@@ -436,6 +436,278 @@
       .bottom-bar-url { display: none; }
       .sec-title { font-size: 26px; }
     }
+  /* ===== BABELDOC FEATURED SECTION ===== */
+  .babeldoc-section {
+    background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 40%, #fffdf5 100%);
+    border: 2px solid #d97706;
+    border-radius: 20px;
+    padding: 40px 40px 36px;
+    margin: 48px 0;
+    position: relative;
+    box-shadow: 0 4px 24px rgba(217,119,6,0.12), 0 1px 4px rgba(0,0,0,0.06);
+  }
+  .babeldoc-badge {
+    position: absolute;
+    top: -14px;
+    left: 32px;
+    background: linear-gradient(90deg, #d97706, #f59e0b);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 4px 14px;
+    border-radius: 20px;
+    box-shadow: 0 2px 8px rgba(217,119,6,0.35);
+  }
+  .babeldoc-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 6px;
+  }
+  .babeldoc-logo {
+    font-size: 28px;
+  }
+  .babeldoc-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: #92400e;
+    letter-spacing: -0.01em;
+  }
+  .babeldoc-subtitle {
+    font-size: 14px;
+    color: #78350f;
+    margin-bottom: 28px;
+    line-height: 1.6;
+  }
+  /* Brief card */
+  .babeldoc-brief-card {
+    background: #fff;
+    border: 1.5px solid #fcd34d;
+    border-radius: 14px;
+    padding: 28px 28px 24px;
+    margin-bottom: 28px;
+  }
+  .babeldoc-brief-card h4 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #92400e;
+    margin: 0 0 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .babeldoc-positioning {
+    background: #fffbeb;
+    border-left: 3px solid #d97706;
+    padding: 10px 14px;
+    border-radius: 0 8px 8px 0;
+    font-size: 14px;
+    color: #451a03;
+    margin-bottom: 18px;
+    font-style: italic;
+    line-height: 1.65;
+  }
+  .babeldoc-abilities {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+  .babeldoc-ability {
+    background: #fef9ee;
+    border: 1px solid #fde68a;
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 13px;
+    color: #451a03;
+    line-height: 1.55;
+  }
+  .babeldoc-ability strong {
+    display: block;
+    color: #92400e;
+    font-size: 13px;
+    margin-bottom: 4px;
+  }
+  .babeldoc-steps {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+  }
+  .babeldoc-step {
+    background: #fff7ed;
+    border: 1px solid #fed7aa;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 13px;
+    color: #7c2d12;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    flex: 1;
+    min-width: 160px;
+  }
+  .babeldoc-step-num {
+    background: #d97706;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .babeldoc-quota-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-bottom: 14px;
+  }
+  .babeldoc-quota-table th {
+    background: #fef3c7;
+    color: #92400e;
+    font-weight: 700;
+    padding: 8px 12px;
+    text-align: left;
+    border: 1px solid #fde68a;
+  }
+  .babeldoc-quota-table td {
+    padding: 7px 12px;
+    border: 1px solid #fde68a;
+    color: #451a03;
+    background: #fff;
+  }
+  .babeldoc-quota-table tr:nth-child(even) td { background: #fffbeb; }
+  .babeldoc-limit {
+    background: #fff7ed;
+    border: 1px solid #fed7aa;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 13px;
+    color: #7c2d12;
+    line-height: 1.6;
+  }
+  .babeldoc-limit strong { color: #92400e; }
+  /* Script tabs */
+  .babeldoc-script-card {
+    background: #fff;
+    border: 1.5px solid #fcd34d;
+    border-radius: 14px;
+    padding: 24px 28px;
+  }
+  .babeldoc-script-card h4 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #92400e;
+    margin: 0 0 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .bdoc-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .bdoc-tab {
+    padding: 8px 18px;
+    border-radius: 20px;
+    border: 1.5px solid #d97706;
+    background: #fff;
+    color: #92400e;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .bdoc-tab.active {
+    background: linear-gradient(90deg, #d97706, #f59e0b);
+    color: #fff;
+    border-color: transparent;
+  }
+  .bdoc-panel { display: none; }
+  .bdoc-panel.active { display: block; }
+  .bdoc-script-meta {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+  .bdoc-meta-tag {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 12px;
+    color: #92400e;
+    font-weight: 600;
+  }
+  .bdoc-section {
+    margin-bottom: 18px;
+  }
+  .bdoc-section-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #d97706;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+  }
+  .bdoc-section-content {
+    font-size: 13.5px;
+    color: #451a03;
+    line-height: 1.7;
+    background: #fffbeb;
+    border-radius: 8px;
+    padding: 12px 14px;
+  }
+  .bdoc-section-content ul {
+    margin: 6px 0 0 0;
+    padding-left: 18px;
+  }
+  .bdoc-section-content li {
+    margin-bottom: 5px;
+  }
+  .bdoc-notes {
+    background: #fff7ed;
+    border: 1px solid #fed7aa;
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-top: 16px;
+  }
+  .bdoc-notes-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: #d97706;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 10px;
+  }
+  .bdoc-notes-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .bdoc-note-item {
+    font-size: 12.5px;
+    color: #7c2d12;
+    line-height: 1.55;
+    display: flex;
+    gap: 6px;
+    align-items: flex-start;
+  }
+  @media (max-width: 768px) {
+    .babeldoc-abilities { grid-template-columns: 1fr; }
+    .bdoc-notes-grid { grid-template-columns: 1fr; }
+    .babeldoc-steps { flex-direction: column; }
+    .babeldoc-section { padding: 32px 20px 28px; }
+  }
   </style>
 </head>
 <body>
@@ -518,6 +790,7 @@
     <span class="nav-page-name">学术类达人合作页</span>
     <div class="nav-links">
       <a href="#brief">产品简报</a>
+      <a href="#babeldoc" style="color:#d97706;font-weight:700">⭐ BabelDOC</a>
       <a href="#script">脚本建议</a>
       <a href="#install">安装指引</a>
       <a href="#refs">爆款参考</a>
@@ -682,6 +955,135 @@
           </tr>
         </tbody>
       </table>
+    </div>
+
+    <!-- ===== BABELDOC FEATURED SECTION ===== -->
+    <div class="babeldoc-section reveal" id="babeldoc">
+      <div class="babeldoc-badge">⭐ 重点推广功能</div>
+
+      <div class="babeldoc-header">
+        <span class="babeldoc-logo">🔬</span>
+        <div class="babeldoc-title">BabelDOC · PDF 专业翻译</div>
+      </div>
+      <p class="babeldoc-subtitle">面向 PDF 专业场景的智能翻译工具——保留公式、表格、脚注与多栏结构，术语一致、风格可控，实现「翻译即成品」。<br>这是我们最希望达人重点介绍的功能，以下提供完整 Brief 与两期脚本大纲供参考。</p>
+
+      <!-- Brief 卡片 -->
+      <div class="babeldoc-brief-card">
+        <h4>📋 产品 Brief</h4>
+
+        <div class="babeldoc-positioning">
+          「BabelDOC 不只是翻译，更是排版如初的 PDF 翻译专家。无论是论文、合同还是报告，翻译后格式不乱、术语精准统一，拿来即用。」
+        </div>
+
+        <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:10px;">🎯 5 大核心能力（达人传播重点）</div>
+        <div class="babeldoc-abilities">
+          <div class="babeldoc-ability"><strong>① 结构级解析与还原</strong>处理图表/矢量图中的水平文字，保留公式与表格线条，跨页/跨栏段落自动重组，成品更连贯。</div>
+          <div class="babeldoc-ability"><strong>② 术语一致性</strong>支持术语库与自动提取术语协同，锁定高频专业词的统一译法，告别前后译法不一。</div>
+          <div class="babeldoc-ability"><strong>③ 风格可控</strong>提供角色提示词（学术译者 / 法律审校 / 技术写作者等），可保存模板，统一语气与体裁。</div>
+          <div class="babeldoc-ability"><strong>④ 可读性与版式稳定</strong>二阶段排版让字号更统一，支持富文本翻译（粗斜体/下划线/颜色），并可移除段落中非公式线条。</div>
+          <div class="babeldoc-ability"><strong>⑤ 字体与观感</strong>中文可选楷/宋/黑，其他语种支持 Script/Serif/Sans-serif，跨语种字体映射与 Noto 全字符兜底。</div>
+          <div class="babeldoc-ability"><strong>✅ 适合人群</strong>学生/科研人员（论文、技术报告）、法律/金融从业者（合同、白皮书）、所有不愿排版崩坏的 PDF 用户。</div>
+        </div>
+
+        <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:10px;">🖥️ 使用入口与操作路径</div>
+        <div class="babeldoc-steps">
+          <div class="babeldoc-step"><span class="babeldoc-step-num">1</span><span>打开沉浸式翻译 → BabelDOC 页面</span></div>
+          <div class="babeldoc-step"><span class="babeldoc-step-num">2</span><span>上传 PDF → 选择目标语言与翻译模型</span></div>
+          <div class="babeldoc-step"><span class="babeldoc-step-num">3</span><span>（可选）在「翻译选项」开启：角色提示词、富文本翻译、字体、术语库 / 自动提取术语</span></div>
+          <div class="babeldoc-step"><span class="babeldoc-step-num">4</span><span>立即翻译 → 导出成品（支持批量下载）</span></div>
+        </div>
+
+        <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:10px;">💳 额度与模型（对粉丝要讲清）</div>
+        <table class="babeldoc-quota-table">
+          <thead><tr><th>用户类型</th><th>每月免费额度</th><th>高级模型额度</th></tr></thead>
+          <tbody>
+            <tr><td>免费用户</td><td>50 万 Token（免费模型）</td><td>—</td></tr>
+            <tr><td>Pro 用户</td><td>—</td><td>2000 万 Token（与插件共用）</td></tr>
+            <tr><td>Max 用户</td><td>—</td><td>5000 万 Token（与插件共用）</td></tr>
+          </tbody>
+        </table>
+
+        <div class="babeldoc-limit"><strong>⚠️ 适配限制（创作避坑）：</strong>扫描版 / 图片型 PDF 当前不支持完整解析；复杂表格/线条或原件质量差时，呈现会因素材而异——发布前请先用同类样张自测。免费模型可用性受上游供应与负载影响。</div>
+      </div>
+
+      <!-- 脚本大纲 Tab -->
+      <div class="babeldoc-script-card">
+        <h4>🎬 脚本大纲参考（两期）</h4>
+        <div class="bdoc-tabs">
+          <button class="bdoc-tab active" onclick="switchBdoc(0)">第①期 · 排版乱码终极解决方案</button>
+          <button class="bdoc-tab" onclick="switchBdoc(1)">第②期 · 告别术语混乱，精准度拉满</button>
+        </div>
+
+        <!-- 脚本① -->
+        <div class="bdoc-panel active" id="bdoc-0">
+          <div class="bdoc-script-meta">
+            <span class="bdoc-meta-tag">🎯 博主身份：深受外语文献翻译困扰的研究生/博士生</span>
+            <span class="bdoc-meta-tag">📌 核心：排版精准 · 公式/表格/矢量图完整保留</span>
+          </div>
+          <div class="bdoc-section">
+            <div class="bdoc-section-label">① Hook &amp; 痛点切入（前 5 秒）</div>
+            <div class="bdoc-section-content">视觉：博主在电脑前，面对充满公式、表格和矢量图的英文 PDF，表情痛苦；屏幕特写展示 DeepL / Google 的拉垮翻译效果。<br><br>话术：「你翻译英文文献的时候，是不是也这样？用了一些工具一翻，公式散了，表格乱了，图表里的单词根本没翻译！最崩溃的是，一句话跨个页，翻译出来就前言不搭后语……这根本没法用啊！」</div>
+          </div>
+          <div class="bdoc-section">
+            <div class="bdoc-section-label">② 产品演示（核心部分）—— 竞品对比 + 功能教程</div>
+            <div class="bdoc-section-content">视觉：屏幕分屏对比，左侧 DeepL / Google，右侧 BabelDOC。<ul><li><strong>对比点 1：公式与表格线条</strong> — 左侧分数线消失、公式结构错误；右侧数学符号、分数线、根号、表格线条完美保留。花字：「公式存活确认！线条不再消失！」</li><li><strong>对比点 2：矢量图与图表内文字</strong> — 左侧图表文字被忽略；右侧矢量图文字精准识别并翻译。花字：「矢量图文字也能翻？！独家黑科技！」</li><li><strong>对比点 3：跨页段落连贯性</strong> — 左侧跨页句子被生硬切断；右侧智能合并，输出连贯译文。花字：「拒绝强行拆句，语义更连贯！」</li></ul>功能区别说明：普通文档翻译适用于 txt/Word/PPT；BabelDOC（PDF 专家模式）专为复杂排版 PDF 而生，翻译学术论文、白皮书、报告时务必选 BabelDOC 引擎。</div>
+          </div>
+          <div class="bdoc-section">
+            <div class="bdoc-section-label">③ 终极悬念 &amp; CTA</div>
+            <div class="bdoc-section-content">「但其实，能把排版还原得这么好，对 BabelDOC 来说只是基操。我们科研人最怕的，其实是专业术语被胡乱翻译，那才真是灾难……关于术语翻译这个大事儿，BabelDOC 有一个让你绝对安心的'终极解决方案'，我们下期视频单独来深扒！」<br><br>屏幕信息：花字「关注我，下期揭晓术语安全黑科技！」 / 评论区留言你的领域，抽 5 位送会员！</div>
+          </div>
+          <div class="bdoc-notes">
+            <div class="bdoc-notes-title">🎬 关键制作要点</div>
+            <div class="bdoc-notes-grid">
+              <div class="bdoc-note-item">📸 只用真实学术素材（arXiv/PubMed 论文），不使用官网素材</div>
+              <div class="bdoc-note-item">🎥 录制竞品真实翻车画面（Google 翻译 / DeepL 乱码）</div>
+              <div class="bdoc-note-item">🔍 必拍镜头：功能特写演示、界面元素放大（公式/图表）、稳定拍摄禁止手持抖动</div>
+              <div class="bdoc-note-item">⏱️ 每处卖点 ≥ 4 秒；转化强化至少 3 秒，说清楚 Weekly Pro 免费福利与折扣码</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 脚本② -->
+        <div class="bdoc-panel" id="bdoc-1">
+          <div class="bdoc-script-meta">
+            <span class="bdoc-meta-tag">🎯 博主身份：深受外语文献翻译困扰的研究生/博士生</span>
+            <span class="bdoc-meta-tag">📌 核心：术语统一 · 风格可控 · 多引擎协作</span>
+          </div>
+          <div class="bdoc-section">
+            <div class="bdoc-section-label">① 开场钩子 &amp; 痛点（衔接上期）</div>
+            <div class="bdoc-section-content">视觉：展示其他翻译工具的翻车版翻译，术语不一致、语气跳戏。<br><br>话术：「上期我们解决了排版乱码，但这还不够——术语乱翻才是科研人的噩梦！同一个词，前后译法不同，读起来像拼凑版机翻……今天，带你解锁 BabelDOC 的术语控制 + 风格定制黑科技！」</div>
+          </div>
+          <div class="bdoc-section">
+            <div class="bdoc-section-label">② 功能一：术语库 + 自动提取术语</div>
+            <div class="bdoc-section-content"><ul><li><strong>术语库调用：</strong>支持官方库 + 自建术语表，一次上传终身受用，适合专利、论文、报告等高频重复领域。</li><li><strong>自动提取术语：</strong>翻译前扫描全文，自动锁定高频词，统一译法，无需手动设置。</li></ul>话术：「术语翻译牛头不对马嘴还无法保持一致？BabelDOC 帮你挨个解决！」<br>参考文章：<a href="https://immersivetranslate.com/blog/unlock_babeldoc_four_tools/" target="_blank" style="color:#d97706">解锁 BabelDOC 四大工具详解</a></div>
+          </div>
+          <div class="bdoc-section">
+            <div class="bdoc-section-label">③ 功能二：自定义角色提示词</div>
+            <div class="bdoc-section-content">视觉：展示设置界面，输入角色描述。<br><br>场景举例：学术译者（严谨、术语精准）/ 科技写手（生动如 The Verge）/ 小说译者（保留文学张力）<br><br>话术：「你可以定义翻译的'人格'，让 AI 更像你想要的译者！」</div>
+          </div>
+          <div class="bdoc-section">
+            <div class="bdoc-section-label">④ 功能三：多引擎协作（KIMI + DeepSeek/Qwen）</div>
+            <div class="bdoc-section-content">视觉：图示分工流程。<ul><li><strong>KIMI：</strong>擅长术语提取，精准识别关键词</li><li><strong>DeepSeek/Qwen：</strong>负责全文翻译，性价比高</li></ul>BabelDOC 还支持 DeepSeek、OpenAI、Gemini 等多个顶级引擎随意选择。<br><br>话术：「不让一个模型干所有事——分工合作，效果更好，成本更低！」<br>参考文章：<a href="https://immersivetranslate.com/blog/babeldoc_new_updates_release_one/" target="_blank" style="color:#d97706">BabelDOC 新功能更新详解</a></div>
+          </div>
+          <div class="bdoc-section">
+            <div class="bdoc-section-label">⑤ 实操演示：三步设置精准翻译</div>
+            <div class="bdoc-section-content"><ol style="padding-left:18px;margin:0"><li>上传 PDF → 选择「自定义角色提示词」→ 选择「术语库」</li><li>开启「自动提取术语」→ 选择「KIMI 提取 + DeepSeek 翻译」引擎</li><li>立即翻译 → 获得术语统一、风格一致的译文</li></ol></div>
+          </div>
+          <div class="bdoc-section">
+            <div class="bdoc-section-label">⑥ 结尾悬念 &amp; CTA</div>
+            <div class="bdoc-section-content">「术语稳了，风格定了，排版准了——BabelDOC 是不是你的终极科研翻译搭档？下期我们聊聊：关于隐私和是否有平替工具。」<br><br>屏幕信息：花字「关注我，解锁更多翻译黑科技！」 / 评论区留言领域，抽 5 位送会员，用我的折扣码立享九折。</div>
+          </div>
+          <div class="bdoc-notes">
+            <div class="bdoc-notes-title">🎬 关键制作要点</div>
+            <div class="bdoc-notes-grid">
+              <div class="bdoc-note-item">📸 只用真实学术素材（arXiv/PubMed 论文），不使用官网素材</div>
+              <div class="bdoc-note-item">🎥 录制竞品真实翻车画面（Google 翻译 / DeepL 乱码）</div>
+              <div class="bdoc-note-item">🔍 必拍镜头：功能特写演示、界面元素放大（术语细节）、稳定拍摄禁止手持抖动</div>
+              <div class="bdoc-note-item">⏱️ 每处卖点 ≥ 4 秒；转化强化至少 3 秒，说清楚 Weekly Pro 免费福利与折扣码</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- 建议提及 + 技术限制 -->
@@ -1447,6 +1849,10 @@
     const panels = document.querySelectorAll('#refs .script-panel');
     tabs.forEach((t,j) => t.classList.toggle('active', i===j));
     panels.forEach((p,j) => p.classList.toggle('active', i===j));
+  }
+  function switchBdoc(i) {
+    document.querySelectorAll('.bdoc-tab').forEach((t,j) => t.classList.toggle('active', i===j));
+    document.querySelectorAll('.bdoc-panel').forEach((p,j) => p.classList.toggle('active', i===j));
   }
   function switchInstall(i) {
     document.querySelectorAll('.install-tab').forEach((t,j) => t.classList.toggle('active', i===j));
