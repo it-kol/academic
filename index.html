@@ -13,7 +13,7 @@
       --bg-panel: #edeae2;
       --bg-card: #ffffff;
       --border: rgba(90,70,30,0.13);
-      --border-bright: rgba(90,70,30,0.25);
+      --border-bright: rgba(90,70,30,0.28);
       --text-primary: #1a1208;
       --text-secondary: #4a3a1a;
       --text-muted: #8a7a5a;
@@ -155,7 +155,8 @@
     @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
     @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
     @keyframes gradShift { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
-    @keyframes inkDraw { from { stroke-dashoffset: 1000; } to { stroke-dashoffset: 0; } }
+    @keyframes glowPulse { 0%,100%{opacity:0.5;} 50%{opacity:1;} }
+    @keyframes ringPulse { 0%,100%{opacity:0.3;transform:scale(1);} 50%{opacity:0.8;transform:scale(1.04);} }
 
     /* ===== SECTION HEADER ===== */
     .sec-head { text-align: center; margin-bottom: 52px; }
@@ -229,27 +230,19 @@
     .logo-3d-glow {
       position: absolute; inset: -16px; border-radius: 36px;
       background: radial-gradient(ellipse, rgba(55,48,163,0.15) 0%, transparent 70%);
-      pointer-events: none; z-index: -1;
-      animation: glowPulse 3s ease-in-out infinite;
+      pointer-events: none; z-index: -1; animation: glowPulse 3s ease-in-out infinite;
     }
     .logo-3d-ring {
       position: absolute; inset: -6px; border-radius: 30px;
-      border: 1px solid rgba(55,48,163,0.18);
-      pointer-events: none;
+      border: 1px solid rgba(55,48,163,0.18); pointer-events: none;
       animation: ringPulse 3s ease-in-out infinite 0.5s;
     }
     .logo-3d-ring2 {
       position: absolute; inset: -14px; border-radius: 36px;
-      border: 1px solid rgba(55,48,163,0.09);
-      pointer-events: none;
+      border: 1px solid rgba(55,48,163,0.09); pointer-events: none;
       animation: ringPulse 3s ease-in-out infinite 1s;
     }
-    @keyframes glowPulse { 0%,100%{opacity:0.5;} 50%{opacity:1;} }
-    @keyframes ringPulse { 0%,100%{opacity:0.3;transform:scale(1);} 50%{opacity:0.8;transform:scale(1.04);} }
     .hero-logo-row { display: flex; align-items: center; justify-content: center; gap: 28px; margin-bottom: 28px; animation: fadeInUp 0.6s ease both; }
-    .hero-logo-info { text-align: left; }
-    .hero-logo-name { font-size: 20px; font-weight: 900; color: var(--text-primary); }
-    .hero-logo-sub { font-size: 12px; color: var(--text-muted); margin-top: 3px; }
     .hero-logo-x { font-size: 28px; font-weight: 300; color: var(--text-muted); }
     .hero-logo-platform { display: flex; align-items: center; gap: 12px; padding: 12px 20px; border-radius: var(--radius); background: rgba(255,255,255,0.7); border: 1px solid var(--border); }
     .hero-logo-platform-icon { font-size: 32px; }
@@ -273,26 +266,50 @@
     .brief-card-full { grid-column: 1 / -1; }
     .ic-ok { color: var(--green); font-style: normal; }
     .ic-warn { color: var(--amber); font-style: normal; }
-    .scene-g { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-    .scene-card {
-      padding: 14px 16px; border-radius: var(--radius-sm);
-      background: rgba(55,48,163,0.04); border: 1px solid rgba(55,48,163,0.1);
-      transition: all var(--transition);
-    }
-    .scene-card:hover { border-color: rgba(55,48,163,0.25); background: rgba(55,48,163,0.07); }
-    .scene-title { font-size: 13px; font-weight: 700; color: var(--text-primary); margin-bottom: 5px; }
-    .scene-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.6; }
+
+    /* ===== BRIEF TABLE ===== */
+    .brief-table-wrap { overflow-x: auto; margin-bottom: 32px; border-radius: var(--radius); border: 1px solid var(--border); box-shadow: 0 2px 8px rgba(90,70,30,0.05); }
+    .brief-table { width: 100%; border-collapse: collapse; font-size: 13px; background: var(--bg-card); }
+    .brief-table thead tr { background: rgba(55,48,163,0.06); border-bottom: 1px solid rgba(55,48,163,0.18); }
+    .brief-table th { padding: 12px 14px; text-align: left; font-size: 11px; font-weight: 700; color: var(--indigo); letter-spacing: 0.05em; text-transform: uppercase; white-space: nowrap; }
+    .brief-table td { padding: 12px 14px; border-bottom: 1px solid rgba(90,70,30,0.07); color: var(--text-secondary); vertical-align: top; line-height: 1.6; }
+    .brief-table td:first-child { color: var(--text-primary); white-space: nowrap; font-weight: 600; }
+    .brief-table tbody tr:last-child td { border-bottom: none; }
+    .brief-table tbody tr:hover { background: rgba(55,48,163,0.02); }
+    .brief-row-alt { background: rgba(90,70,30,0.015); }
+    .brief-tag { display: inline-block; padding: 2px 8px; border-radius: 100px; font-size: 11px; font-weight: 700; white-space: nowrap; }
+    .brief-tag-must { background: rgba(146,64,14,0.1); color: var(--amber); border: 1px solid rgba(146,64,14,0.22); }
+    .brief-tag-adv { background: rgba(55,48,163,0.08); color: var(--indigo); border: 1px solid rgba(55,48,163,0.2); }
+    .brief-tag-opt { background: rgba(90,70,30,0.06); color: var(--text-muted); border: 1px solid var(--border); }
+
+    /* ===== PRICING ===== */
+    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 28px; }
+    @media (max-width: 768px) { .pricing-grid { grid-template-columns: 1fr; } }
+    .pricing-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 24px; position: relative; transition: border-color var(--transition); box-shadow: 0 2px 8px rgba(90,70,30,0.05); }
+    .pricing-card:hover { border-color: var(--border-bright); }
+    .pricing-card.pricing-popular { border-color: rgba(55,48,163,0.4); background: linear-gradient(135deg, rgba(55,48,163,0.04) 0%, rgba(13,148,136,0.03) 100%); }
+    .pricing-popular-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); padding: 3px 14px; border-radius: 100px; background: var(--indigo); color: #fff; font-size: 10px; font-weight: 900; letter-spacing: 0.08em; white-space: nowrap; }
+    .pricing-tier { font-size: 11px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; }
+    .pricing-price { font-size: 32px; font-weight: 900; color: var(--text-primary); line-height: 1; margin-bottom: 4px; }
+    .pricing-price span { font-size: 14px; font-weight: 500; color: var(--text-muted); }
+    .pricing-price-note { font-size: 12px; color: var(--text-muted); margin-bottom: 16px; }
+    .pricing-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+    .pricing-features { display: flex; flex-direction: column; gap: 8px; }
+    .pricing-feature { display: flex; align-items: flex-start; gap: 8px; font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
+    .pricing-feature-icon { flex-shrink: 0; margin-top: 1px; font-size: 11px; }
+    .pricing-feature.highlight { color: var(--text-primary); font-weight: 600; }
 
     /* ===== PRODUCTION TIPS ===== */
     .tips-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .tips-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; box-shadow: 0 2px 8px rgba(90,70,30,0.05); }
-    .tips-card-head { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
-    .tips-card-icon { font-size: 20px; }
-    .tips-card-title { font-size: 15px; font-weight: 800; color: var(--text-primary); }
-    .tips-list { display: flex; flex-direction: column; gap: 14px; }
-    .tips-item { display: flex; gap: 12px; }
-    .tips-item-num { width: 22px; height: 22px; border-radius: 50%; background: rgba(55,48,163,0.1); border: 1px solid rgba(55,48,163,0.2); color: var(--indigo); font-size: 11px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
-    .tips-item { font-size: 13px; color: var(--text-secondary); line-height: 1.7; }
+    @media (max-width: 768px) { .tips-grid { grid-template-columns: 1fr; } }
+    .tips-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 24px; box-shadow: 0 2px 8px rgba(90,70,30,0.05); }
+    .tips-card-head { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+    .tips-card-icon { font-size: 22px; }
+    .tips-card-title { font-size: 14px; font-weight: 800; color: var(--text-primary); }
+    .tips-list { display: flex; flex-direction: column; gap: 10px; }
+    .tips-item { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+    .tips-item-num { flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%; background: rgba(55,48,163,0.1); border: 1px solid rgba(55,48,163,0.22); color: var(--indigo); font-size: 10px; font-weight: 900; display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+    .tips-item strong { color: var(--text-primary); }
 
     /* ===== SCRIPT SECTION ===== */
     .script-tabs { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
@@ -331,14 +348,6 @@
     .step-num { width: 40px; height: 40px; border-radius: 50%; background: rgba(55,48,163,0.1); border: 2px solid rgba(55,48,163,0.25); color: var(--indigo); font-size: 16px; font-weight: 900; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; }
     .step-title { font-size: 13px; font-weight: 800; color: var(--text-primary); margin-bottom: 6px; }
     .step-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.6; }
-
-    /* ===== VIDEO SECTION ===== */
-    .video-wrap {
-      border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border);
-      background: #f0ede6; position: relative;
-      box-shadow: 0 4px 20px rgba(90,70,30,0.1);
-    }
-    .video-label { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 100px; background: rgba(55,48,163,0.08); border: 1px solid rgba(55,48,163,0.2); font-size: 11px; font-weight: 700; color: var(--indigo); margin-bottom: 16px; }
 
     /* ===== REF VIDEOS ===== */
     .ref-platform-row { margin-bottom: 28px; }
@@ -410,7 +419,6 @@
       .side-btns { display: none; }
       .hero-h1 { font-size: 36px; }
       .brief-grid { grid-template-columns: 1fr; }
-      .scene-g { grid-template-columns: 1fr 1fr; }
       .steps-row { grid-template-columns: 1fr 1fr; }
       .steps-row::before { display: none; }
       .contact-grid { grid-template-columns: 1fr; }
@@ -421,7 +429,6 @@
       .hero-h1 { font-size: 28px; }
       .hero-stats { gap: 24px; }
       .steps-row { grid-template-columns: 1fr; }
-      .scene-g { grid-template-columns: 1fr; }
       .hero-chips { overflow-x: auto; flex-wrap: nowrap; justify-content: flex-start; padding-bottom: 6px; scrollbar-width: none; }
       .flow-step { flex-direction: column; gap: 12px; }
       .flow-step-left { flex-direction: row; width: auto; }
@@ -437,71 +444,65 @@
 <div class="acad-bg" aria-hidden="true">
   <!-- Beaker left -->
   <svg width="120" height="160" style="top:12%;left:2%;opacity:0.12" viewBox="0 0 120 160">
-    <rect x="45" y="5" width="30" height="50" rx="4" fill="none" stroke="#3730a3" stroke-width="2.5"/>
-    <path d="M45 55 L20 140 Q18 155 30 155 L90 155 Q102 155 100 140 L75 55 Z" fill="none" stroke="#3730a3" stroke-width="2.5"/>
-    <line x1="35" y1="110" x2="85" y2="110" stroke="#3730a3" stroke-width="1.5" stroke-dasharray="4,3"/>
-    <ellipse cx="60" cy="130" rx="18" ry="8" fill="rgba(55,48,163,0.15)"/>
+    <rect x="45" y="5" width="30" height="50" rx="4" fill="none" stroke="#3730a3" stroke-width="2"/>
+    <path d="M45 55 L20 140 Q18 155 30 155 L90 155 Q102 155 100 140 L75 55 Z" fill="none" stroke="#3730a3" stroke-width="2"/>
+    <ellipse cx="60" cy="130" rx="22" ry="8" fill="rgba(55,48,163,0.15)"/>
+    <line x1="20" y1="110" x2="100" y2="110" stroke="#3730a3" stroke-width="1" stroke-dasharray="4,3"/>
+    <circle cx="50" cy="95" r="3" fill="#3730a3" opacity="0.5"/>
+    <circle cx="70" cy="105" r="2" fill="#3730a3" opacity="0.4"/>
+    <circle cx="60" cy="85" r="2.5" fill="#3730a3" opacity="0.45"/>
   </svg>
   <!-- Formula top-right -->
-  <svg width="320" height="80" style="top:8%;right:3%;opacity:0.1" viewBox="0 0 320 80">
-    <text x="0" y="40" font-family="serif" font-size="28" fill="#3730a3" font-style="italic">E = mc²</text>
-    <text x="0" y="72" font-family="serif" font-size="20" fill="#0d9488">∫₀^∞ e⁻ˣ dx = 1</text>
+  <svg width="200" height="60" style="top:8%;right:3%;opacity:0.1" viewBox="0 0 200 60">
+    <text x="0" y="40" font-family="serif" font-size="36" fill="#92400e" font-style="italic">E = mc²</text>
   </svg>
-  <!-- Microscope right -->
-  <svg width="100" height="140" style="top:35%;right:2%;opacity:0.1" viewBox="0 0 100 140">
-    <rect x="38" y="5" width="24" height="55" rx="4" fill="none" stroke="#0d9488" stroke-width="2.5"/>
-    <ellipse cx="50" cy="8" rx="12" ry="5" fill="none" stroke="#0d9488" stroke-width="2"/>
-    <line x1="50" y1="60" x2="50" y2="90" stroke="#0d9488" stroke-width="2.5"/>
-    <path d="M30 90 L70 90 L65 110 L35 110 Z" fill="none" stroke="#0d9488" stroke-width="2"/>
-    <line x1="20" y1="120" x2="80" y2="120" stroke="#0d9488" stroke-width="3" stroke-linecap="round"/>
-    <line x1="30" y1="130" x2="70" y2="130" stroke="#0d9488" stroke-width="2" stroke-linecap="round"/>
-  </svg>
-  <!-- Ruler bottom-left -->
-  <svg width="300" height="40" style="bottom:20%;left:1%;opacity:0.1;transform:rotate(-15deg)" viewBox="0 0 300 40">
-    <rect x="0" y="8" width="300" height="24" rx="4" fill="none" stroke="#92400e" stroke-width="2"/>
-    <line x1="20" y1="8" x2="20" y2="32" stroke="#92400e" stroke-width="1.5"/>
-    <line x1="50" y1="8" x2="50" y2="32" stroke="#92400e" stroke-width="1.5"/>
-    <line x1="80" y1="8" x2="80" y2="32" stroke="#92400e" stroke-width="1.5"/>
-    <line x1="110" y1="8" x2="110" y2="32" stroke="#92400e" stroke-width="1.5"/>
-    <line x1="140" y1="8" x2="140" y2="32" stroke="#92400e" stroke-width="1.5"/>
-    <line x1="170" y1="8" x2="170" y2="32" stroke="#92400e" stroke-width="1.5"/>
-    <line x1="200" y1="8" x2="200" y2="32" stroke="#92400e" stroke-width="1.5"/>
-    <line x1="230" y1="8" x2="230" y2="32" stroke="#92400e" stroke-width="1.5"/>
-    <line x1="260" y1="8" x2="260" y2="32" stroke="#92400e" stroke-width="1.5"/>
-    <line x1="35" y1="14" x2="35" y2="26" stroke="#92400e" stroke-width="1"/>
-    <line x1="65" y1="14" x2="65" y2="26" stroke="#92400e" stroke-width="1"/>
-    <line x1="95" y1="14" x2="95" y2="26" stroke="#92400e" stroke-width="1"/>
-    <line x1="125" y1="14" x2="125" y2="26" stroke="#92400e" stroke-width="1"/>
-    <line x1="155" y1="14" x2="155" y2="26" stroke="#92400e" stroke-width="1"/>
-  </svg>
-  <!-- DNA helix right-bottom -->
-  <svg width="60" height="200" style="bottom:10%;right:4%;opacity:0.09" viewBox="0 0 60 200">
-    <path d="M10 0 Q50 25 10 50 Q-30 75 10 100 Q50 125 10 150 Q-30 175 10 200" fill="none" stroke="#3730a3" stroke-width="2"/>
-    <path d="M50 0 Q10 25 50 50 Q90 75 50 100 Q10 125 50 150 Q90 175 50 200" fill="none" stroke="#0d9488" stroke-width="2"/>
-    <line x1="10" y1="25" x2="50" y2="25" stroke="#92400e" stroke-width="1.5"/>
-    <line x1="10" y1="75" x2="50" y2="75" stroke="#92400e" stroke-width="1.5"/>
-    <line x1="10" y1="125" x2="50" y2="125" stroke="#92400e" stroke-width="1.5"/>
-    <line x1="10" y1="175" x2="50" y2="175" stroke="#92400e" stroke-width="1.5"/>
-  </svg>
-  <!-- Math formula center-left -->
-  <svg width="200" height="60" style="top:55%;left:1%;opacity:0.09" viewBox="0 0 200 60">
-    <text x="0" y="35" font-family="serif" font-size="22" fill="#0d9488" font-style="italic">∑ᵢ xᵢ / n = x̄</text>
+  <!-- Integral bottom-left -->
+  <svg width="160" height="80" style="bottom:18%;left:1%;opacity:0.09" viewBox="0 0 160 80">
+    <text x="0" y="60" font-family="serif" font-size="48" fill="#0d9488" font-style="italic">∫f(x)dx</text>
   </svg>
   <!-- Atom top-left -->
-  <svg width="100" height="100" style="top:5%;left:8%;opacity:0.1" viewBox="0 0 100 100">
-    <ellipse cx="50" cy="50" rx="40" ry="18" fill="none" stroke="#3730a3" stroke-width="1.8"/>
-    <ellipse cx="50" cy="50" rx="40" ry="18" fill="none" stroke="#3730a3" stroke-width="1.8" transform="rotate(60 50 50)"/>
-    <ellipse cx="50" cy="50" rx="40" ry="18" fill="none" stroke="#3730a3" stroke-width="1.8" transform="rotate(120 50 50)"/>
-    <circle cx="50" cy="50" r="5" fill="#3730a3"/>
+  <svg width="100" height="100" style="top:40%;left:0.5%;opacity:0.1" viewBox="0 0 100 100">
+    <circle cx="50" cy="50" r="6" fill="#3730a3"/>
+    <ellipse cx="50" cy="50" rx="40" ry="16" fill="none" stroke="#3730a3" stroke-width="1.5"/>
+    <ellipse cx="50" cy="50" rx="40" ry="16" fill="none" stroke="#3730a3" stroke-width="1.5" transform="rotate(60 50 50)"/>
+    <ellipse cx="50" cy="50" rx="40" ry="16" fill="none" stroke="#3730a3" stroke-width="1.5" transform="rotate(120 50 50)"/>
   </svg>
-  <!-- Compass bottom-right -->
-  <svg width="90" height="90" style="bottom:5%;right:8%;opacity:0.1" viewBox="0 0 90 90">
-    <circle cx="45" cy="45" r="38" fill="none" stroke="#92400e" stroke-width="2"/>
-    <line x1="45" y1="7" x2="45" y2="83" stroke="#92400e" stroke-width="1.5"/>
-    <line x1="7" y1="45" x2="83" y2="45" stroke="#92400e" stroke-width="1.5"/>
-    <line x1="18" y1="18" x2="72" y2="72" stroke="#92400e" stroke-width="1" stroke-dasharray="3,3"/>
-    <line x1="72" y1="18" x2="18" y2="72" stroke="#92400e" stroke-width="1" stroke-dasharray="3,3"/>
-    <circle cx="45" cy="45" r="4" fill="#92400e"/>
+  <!-- Ruler bottom-right -->
+  <svg width="180" height="40" style="bottom:22%;right:1%;opacity:0.1" viewBox="0 0 180 40">
+    <rect x="0" y="10" width="180" height="20" rx="3" fill="none" stroke="#92400e" stroke-width="1.5"/>
+    <line x1="15" y1="10" x2="15" y2="30" stroke="#92400e" stroke-width="1.5"/>
+    <line x1="30" y1="10" x2="30" y2="22" stroke="#92400e" stroke-width="1"/>
+    <line x1="45" y1="10" x2="45" y2="30" stroke="#92400e" stroke-width="1.5"/>
+    <line x1="60" y1="10" x2="60" y2="22" stroke="#92400e" stroke-width="1"/>
+    <line x1="75" y1="10" x2="75" y2="30" stroke="#92400e" stroke-width="1.5"/>
+    <line x1="90" y1="10" x2="90" y2="22" stroke="#92400e" stroke-width="1"/>
+    <line x1="105" y1="10" x2="105" y2="30" stroke="#92400e" stroke-width="1.5"/>
+    <line x1="120" y1="10" x2="120" y2="22" stroke="#92400e" stroke-width="1"/>
+    <line x1="135" y1="10" x2="135" y2="30" stroke="#92400e" stroke-width="1.5"/>
+    <line x1="150" y1="10" x2="150" y2="22" stroke="#92400e" stroke-width="1"/>
+    <line x1="165" y1="10" x2="165" y2="30" stroke="#92400e" stroke-width="1.5"/>
+  </svg>
+  <!-- Mean formula right -->
+  <svg width="140" height="60" style="top:55%;right:1%;opacity:0.09" viewBox="0 0 140 60">
+    <text x="0" y="42" font-family="serif" font-size="30" fill="#3730a3" font-style="italic">x̄ = Σxᵢ/n</text>
+  </svg>
+  <!-- DNA helix bottom-left -->
+  <svg width="60" height="180" style="bottom:5%;left:3%;opacity:0.1" viewBox="0 0 60 180">
+    <path d="M10 0 Q50 20 10 40 Q-30 60 10 80 Q50 100 10 120 Q-30 140 10 160 Q50 180 10 180" fill="none" stroke="#0d9488" stroke-width="2"/>
+    <path d="M50 0 Q10 20 50 40 Q90 60 50 80 Q10 100 50 120 Q90 140 50 160 Q10 180 50 180" fill="none" stroke="#3730a3" stroke-width="2"/>
+    <line x1="10" y1="20" x2="50" y2="20" stroke="#92400e" stroke-width="1" opacity="0.6"/>
+    <line x1="10" y1="60" x2="50" y2="60" stroke="#92400e" stroke-width="1" opacity="0.6"/>
+    <line x1="10" y1="100" x2="50" y2="100" stroke="#92400e" stroke-width="1" opacity="0.6"/>
+    <line x1="10" y1="140" x2="50" y2="140" stroke="#92400e" stroke-width="1" opacity="0.6"/>
+  </svg>
+  <!-- Protractor top-center-right -->
+  <svg width="90" height="90" style="top:5%;right:22%;opacity:0.08" viewBox="0 0 90 90">
+    <path d="M5 85 A80 80 0 0 1 85 85 Z" fill="none" stroke="#92400e" stroke-width="2"/>
+    <line x1="45" y1="85" x2="45" y2="5" stroke="#92400e" stroke-width="1" stroke-dasharray="3,3"/>
+    <line x1="5" y1="85" x2="85" y2="85" stroke="#92400e" stroke-width="1.5"/>
+    <line x1="45" y1="85" x2="82" y2="50" stroke="#92400e" stroke-width="1" stroke-dasharray="3,3"/>
+    <line x1="45" y1="85" x2="8" y2="50" stroke="#92400e" stroke-width="1" stroke-dasharray="3,3"/>
+    <circle cx="45" cy="85" r="4" fill="#92400e"/>
     <polygon points="45,12 42,22 48,22" fill="#92400e"/>
   </svg>
 </div>
@@ -519,7 +520,6 @@
       <a href="#brief">产品简报</a>
       <a href="#script">脚本建议</a>
       <a href="#install">安装指引</a>
-      <a href="#video">教程中心</a>
       <a href="#refs">爆款参考</a>
       <a href="#collab">合作流程</a>
       <a href="#contact">联系我们</a>
@@ -534,7 +534,6 @@
   <a href="#brief" onclick="closeMobileNav()">📋 产品简报</a>
   <a href="#script" onclick="closeMobileNav()">✍️ 脚本建议</a>
   <a href="#install" onclick="closeMobileNav()">📦 安装指引</a>
-  <a href="#video" onclick="closeMobileNav()">📚 教程中心</a>
   <a href="#refs" onclick="closeMobileNav()">🎬 爆款参考</a>
   <a href="#collab" onclick="closeMobileNav()">🤝 合作流程</a>
   <a href="#contact" onclick="closeMobileNav()">📱 联系我们</a>
@@ -548,7 +547,7 @@
 <div class="bottom-bar">
   <span class="bottom-bar-icon">📌</span>
   <div style="flex:1;overflow:hidden">
-    <div class="bottom-bar-text">评论区必放：Landing Page 链接 + 粉丝 9 折折扣码 + 周卡抽奖——这三样直接决定转化</div>
+    <div class="bottom-bar-text">评论区必放：官网链接 + 粉丝 9 折折扣码 + 周卡抽奖——这三样直接决定转化</div>
     <div class="bottom-bar-url">immersivetranslate.com/zh-Hans/</div>
   </div>
   <a href="https://immersivetranslate.com/zh-Hans/" target="_blank" style="flex-shrink:0;padding:7px 14px;border-radius:8px;background:rgba(55,48,163,0.1);border:1px solid rgba(55,48,163,0.25);color:var(--indigo);font-size:12px;font-weight:700">打开 ↗</a>
@@ -560,7 +559,6 @@
   <button class="side-btn" onclick="openShareModal()">🔗<span class="side-btn-label">分享给达人朋友</span></button>
   <button class="side-btn" onclick="openCollabModal()">🤝<span class="side-btn-label">我要恰这个饭</span></button>
 </div>
-
 
 <!-- ===== HERO ===== -->
 <section class="hero-bg" id="hero">
@@ -587,12 +585,12 @@
       <span class="grad-indigo">突破语言边界</span>
     </h1>
     <p class="hero-sub">
-      全球 1000 万+ 用户在用的 AI 翻译插件，专为学者、研究生和教育者设计——看论文、翻 PDF、回导师邮件、上网课，一套工具搞定跨语言学术工作。基础功能完全免费。
+      全球 2000 万+ 用户在用的 AI 翻译插件，专为学者、研究生和教育者设计——看论文、翻 PDF、回导师邮件、上网课，一套工具搞定跨语言学术工作。基础功能完全免费。
     </p>
     <div class="hero-actions">
       <a href="#brief" class="btn btn-primary btn-lg">查看产品简报</a>
       <a href="#script" class="btn btn-outline btn-lg">获取创作灵感</a>
-      <a href="https://immersivetranslate.com/zh-Hans/" target="_blank" class="btn btn-landing btn-lg">🌐 官方 Landing Page ↗</a>
+      <a href="https://immersivetranslate.com/zh-Hans/" target="_blank" class="btn btn-landing btn-lg">🌐 官网 ↗</a>
       <a href="https://files.manuscdn.com/user_upload_by_module/session_file/310519663402005199/PXUqaowsmyaxFVeL.jpg" target="_blank" download="Immersive-Translate-Logo.jpg" class="btn btn-download-logo btn-lg">⬇ 下载 Logo</a>
     </div>
     <div class="hero-chips">
@@ -604,26 +602,14 @@
     </div>
     <div class="hero-divider"></div>
     <div class="hero-stats">
-      <div class="stat">
-        <div class="stat-n"><em>1000</em>万+</div>
-        <div class="stat-l">全球用户</div>
-      </div>
-      <div class="stat">
-        <div class="stat-n"><em>100</em>+</div>
-        <div class="stat-l">支持语言</div>
-      </div>
-      <div class="stat">
-        <div class="stat-n"><em>20</em>+</div>
-        <div class="stat-l">翻译引擎</div>
-      </div>
-      <div class="stat">
-        <div class="stat-n">2024</div>
-        <div class="stat-l">Chrome 年度精选</div>
-      </div>
+      <div class="stat"><div class="stat-n"><em>2000</em>万+</div><div class="stat-l">全球用户</div></div>
+      <div class="stat"><div class="stat-n"><em>100</em>+</div><div class="stat-l">支持语言</div></div>
+      <div class="stat"><div class="stat-n"><em>20</em>+</div><div class="stat-l">AI 翻译引擎</div></div>
+      <div class="stat"><div class="stat-n">2024</div><div class="stat-l">Chrome 年度精选</div></div>
+      <div class="stat"><div class="stat-n"><em>4</em> 步</div><div class="stat-l">快速上手</div></div>
     </div>
   </div>
 </section>
-
 
 <!-- ===== PRODUCT BRIEF ===== -->
 <section class="brief-bg" id="brief">
@@ -631,101 +617,161 @@
     <div class="sec-head reveal">
       <div class="sec-label">Product Brief</div>
       <h2 class="sec-title">产品简报</h2>
-      <p class="sec-desc">沉浸式翻译为学术用户量身打造的核心能力，帮助你的粉丝突破语言壁垒，高效完成科研与学习任务。</p>
+      <p class="sec-desc">录制之前，请先花 3 分钟了解这个工具的核心定位、适用场景与必须准确传达的信息。</p>
     </div>
-    <div class="brief-grid reveal">
-      <!-- 核心亮点 -->
-      <div class="brief-card">
+
+    <!-- 功能表格 -->
+    <div class="brief-table-wrap reveal">
+      <table class="brief-table">
+        <thead>
+          <tr>
+            <th>功能模块</th>
+            <th>推荐级别</th>
+            <th>典型使用场景（达人 &amp; 粉丝）</th>
+            <th>达人推荐话术 / 核心卖点（一句话）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>BabelDOC（复杂 PDF 翻译）</strong></td>
+            <td><span class="brief-tag brief-tag-must">★ 必讲</span></td>
+            <td>翻译 arXiv / PubMed 论文、学位论文、专利文档，保留公式、表格、多栏排版不乱。</td>
+            <td>复杂学术 PDF 翻译后排版不崩、公式完整，底层是开源引擎，还上过 GitHub 热门榜，适合在意专业度的研究者。</td>
+          </tr>
+          <tr>
+            <td><strong>网页双语翻译</strong></td>
+            <td><span class="brief-tag brief-tag-must">★ 必讲</span></td>
+            <td>一键翻译 arXiv / PubMed / ScienceDirect / IEEE Xplore，摘要和正文双语对照，快速判断论文价值。</td>
+            <td>原文+译文并排，比浏览器机翻更适合深度阅读，快速筛选值得精读的文献。</td>
+          </tr>
+          <tr>
+            <td><strong>视频字幕翻译</strong></td>
+            <td><span class="brief-tag brief-tag-must">★ 必讲</span></td>
+            <td>YouTube 学术教程、会议录像、访谈实时双语字幕，支持导出字幕整理知识点。</td>
+            <td>看学术视频直接加双语字幕，还能一键导出字幕丢进 Notion 做学习笔记。</td>
+          </tr>
+          <tr>
+            <td><strong>全局输入框翻译</strong></td>
+            <td><span class="brief-tag brief-tag-must">★ 必讲</span></td>
+            <td>在 Overleaf、GitHub、Slack / Discord、课程论坛等任何输入框，用中文打字一键变英文。</td>
+            <td>参与国际学术讨论时用中文思考，一键变地道英文发出去，不用再来回复制到翻译器。</td>
+          </tr>
+          <tr class="brief-row-alt">
+            <td><strong>AI Write · 邮件回复</strong></td>
+            <td><span class="brief-tag brief-tag-adv">◎ 进阶可讲</span></td>
+            <td>在 Gmail 中一键总结导师长邮件，生成英文回复草稿，改一改就能发。</td>
+            <td>长篇英文邮件一键总结再起草回复，你只需要微调语气就能发，再也不怕回导师邮件。</td>
+          </tr>
+          <tr class="brief-row-alt">
+            <td><strong>会议翻译</strong></td>
+            <td><span class="brief-tag brief-tag-adv">◎ 进阶可讲</span></td>
+            <td>Zoom / Teams / Google Meet 网课、组会、学术讲座实时字幕翻译，聊天内容同步翻译。</td>
+            <td>开全球远程组会时自动出双语字幕，不再"开会空耳"，细节一个不漏。</td>
+          </tr>
+          <tr class="brief-row-alt">
+            <td><strong>划词 / 悬停翻译</strong></td>
+            <td><span class="brief-tag brief-tag-opt">○ 可选 / 进阶</span></td>
+            <td>精读论文时，对某个专业术语或段落做快速查询，不打断阅读节奏。</td>
+            <td>精读时划一下或鼠标一停就出翻译，比整页机翻更精细、打扰更少，适合深度阅读。</td>
+          </tr>
+          <tr class="brief-row-alt">
+            <td><strong>普通 PDF / ePub 翻译</strong></td>
+            <td><span class="brief-tag brief-tag-opt">○ 可选 / 进阶</span></td>
+            <td>快速翻译排版简单的电子书、手册或报告，生成双语文件。</td>
+            <td>文档不复杂就用普通 PDF 翻译，一键生成双语版；复杂学术 PDF 再切到 BabelDOC 模式即可。</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 建议提及 + 技术限制 -->
+    <div class="brief-grid" style="grid-template-columns:1fr 1fr">
+      <div class="brief-card reveal">
         <div class="brief-card-head">
-          <span class="brief-card-icon">⭐</span>
-          <span class="brief-card-title">核心亮点</span>
+          <span class="brief-card-icon">✅</span>
+          <span class="brief-card-title">建议在视频中提到</span>
         </div>
         <ul>
-          <li>支持 100+ 语言，接入 GPT-4、DeepL、Claude、Gemini、DeepSeek 等 20+ 引擎</li>
-          <li>免费版核心功能不限次数，覆盖 Chrome / Edge / Firefox / Safari / 移动端 / 微信小程序</li>
-          <li>2024 年 Chrome 年度精选扩展，全球 1000 万+ 用户</li>
-          <li>可自定义引擎、样式、快捷键，适合重度学术用户</li>
+          <li>明确说明「基础功能完全免费」</li>
+          <li>展示 BabelDOC 翻译论文 PDF 的排版保留效果（最直观的卖点）</li>
+          <li>与 Google 翻译 / 浏览器自带翻译做对比镜头（公式乱码 vs 完整保留）</li>
+          <li>提到 Chrome 2024 年度精选这个背书</li>
+          <li>结尾说明粉丝专属折扣码 + 官网链接</li>
         </ul>
       </div>
-      <!-- BabelDOC 论文翻译 -->
-      <div class="brief-card">
+      <div class="brief-card reveal">
         <div class="brief-card-head">
-          <span class="brief-card-icon">📄</span>
-          <span class="brief-card-title">BabelDOC · 论文 / 文献翻译</span>
+          <span class="brief-card-icon">⚠️</span>
+          <span class="brief-card-title">需要向观众说明的限制</span>
         </div>
         <ul>
-          <li>针对复杂学术 PDF，<strong>保留公式、表格、图表文字、脚注、多栏排版</strong></li>
-          <li>自动合并跨页段落，避免断句、乱排、漏翻</li>
-          <li>支持术语库 + 自动术语提取，全文高频术语统一翻译</li>
-          <li>可用「学术译者」「技术写手」等角色模板，整篇文风统一，更接近期刊 / 导师要求</li>
+          <li>部分视频平台（如爱奇艺）字幕翻译支持有限</li>
+          <li>复杂 PDF 排版翻译需要使用 BabelDOC 引擎，普通模式效果有差异</li>
+          <li>免费版每月有 AI 翻译字数限制，重度用户建议 Pro</li>
+          <li>移动端 App 功能与桌面插件略有差异</li>
         </ul>
       </div>
-      <!-- 学术场景 -->
-      <div class="brief-card brief-card-full">
-        <div class="brief-card-head">
-          <span class="brief-card-icon">🎓</span>
-          <span class="brief-card-title">核心学术使用场景（任选 1–2 个深度展示）</span>
-        </div>
-        <div class="scene-g">
-          <div class="scene-card">
-            <div class="scene-title">📑 文献综述 / 调研</div>
-            <div class="scene-desc">批量翻译 PDF，排版不乱，方便对比、做笔记、整理参考文献。一键翻译 arXiv / PubMed / ScienceDirect / IEEE Xplore，摘要和正文双语对照，快速判断论文价值。</div>
-          </div>
-          <div class="scene-card">
-            <div class="scene-title">🎓 毕业论文 / 投稿</div>
-            <div class="scene-desc">翻译 + 润色非母语稿件，术语、格式更规范。BabelDOC 保留排版，让你的论文翻译结果直接可用，而不是一堆乱码。</div>
-          </div>
-          <div class="scene-card">
-            <div class="scene-title">✉️ AI Write · 回导师邮件</div>
-            <div class="scene-desc">自动读长邮件，给出英文回复草稿，改一改就能发。在 Overleaf、GitHub、Slack / Discord 等输入框直接双语输入，参与国际学术讨论。</div>
-          </div>
-          <div class="scene-card">
-            <div class="scene-title">🎬 网课 / 学术视频</div>
-            <div class="scene-desc">YouTube 学术教程、会议录像、访谈加双语字幕。Zoom / Teams / Google Meet 实时翻译，网课、组会、学术讲座不丢细节。支持导出字幕，整理知识点。</div>
-          </div>
-        </div>
-      </div>
-      <!-- 收费方案 -->
-      <div class="brief-card">
-        <div class="brief-card-head">
-          <span class="brief-card-icon">💰</span>
-          <span class="brief-card-title">收费方案（简版）</span>
-        </div>
-        <ul>
-          <li><i class="ic-ok">✓</i> <strong>免费版：</strong>网页翻译不限次数、PDF 翻译不限次数、BabelDOC 保留排版 PDF 翻译、YouTube 双语字幕不限次数、输入框翻译不限次数、双语电子书制作不限次数</li>
-          <li><i class="ic-ok">✓</i> <strong>Pro 版：</strong>PDF Pro 高级功能、BabelDOC 高质量排版 PDF 翻译、漫画翻译、图片翻译增强、YouTube 双语字幕下载、多设备同步配置、优先邮件支持</li>
-        </ul>
-        <div style="margin-top:12px;padding:10px 14px;border-radius:8px;background:rgba(22,101,52,0.06);border:1px solid rgba(22,101,52,0.18);font-size:12px;color:var(--green)">
-          💡 <strong>话术建议：</strong>日常学习用免费版就够了，论文多、用得频的，可以升级 Pro。
+    </div>
+
+    <!-- 收费方案 -->
+    <div class="sec-head reveal" style="margin-top:48px">
+      <div class="sec-label">Pricing Plans</div>
+      <h2 class="sec-title" style="font-size:28px">收费方案</h2>
+      <p class="sec-desc">必须准确介绍：基础功能完全免费，不需要引导观众认为"用了就要付费"。以下是三个套餐的核心区别，建议在视频中简单提一句。</p>
+    </div>
+    <div class="pricing-grid reveal">
+      <!-- 免费版 -->
+      <div class="pricing-card">
+        <div class="pricing-tier">Free · 免费版</div>
+        <div class="pricing-price">免费 <span></span></div>
+        <div class="pricing-price-note">无需付费，安装即用</div>
+        <div class="pricing-desc">满足日常阅读文献、观看学术视频等基础需求</div>
+        <div class="pricing-features">
+          <div class="pricing-feature highlight"><span class="pricing-feature-icon">✔️</span>网页翻译 · 不限次数</div>
+          <div class="pricing-feature highlight"><span class="pricing-feature-icon">✔️</span>PDF 翻译 · 不限次数</div>
+          <div class="pricing-feature highlight"><span class="pricing-feature-icon">✔️</span>BabelDOC 保留排版 PDF 翻译</div>
+          <div class="pricing-feature highlight"><span class="pricing-feature-icon">✔️</span>YouTube 双语字幕 · 不限次数</div>
+          <div class="pricing-feature highlight"><span class="pricing-feature-icon">✔️</span>输入框翻译 · 不限次数</div>
+          <div class="pricing-feature"><span class="pricing-feature-icon">✔️</span>双语电子书制作 · 不限次数</div>
+          <div class="pricing-feature"><span class="pricing-feature-icon">✔️</span>普通翻译引擎（谷歌、微软等）</div>
         </div>
       </div>
-      <!-- 制作要点 -->
-      <div class="brief-card">
-        <div class="brief-card-head">
-          <span class="brief-card-icon">🎬</span>
-          <span class="brief-card-title">关键制作要点</span>
+      <!-- Pro 版 -->
+      <div class="pricing-card pricing-popular">
+        <div class="pricing-popular-badge">🔥 最受欢迎</div>
+        <div class="pricing-tier">Pro · 专业版</div>
+        <div class="pricing-price">¥49 <span>/ 月（年付 ¥588/年）</span></div>
+        <div class="pricing-price-note">免费试用 3 天，试用期可取消</div>
+        <div class="pricing-desc">适合学术、科研、论文写作等专业领域的深度用户</div>
+        <div class="pricing-features">
+          <div class="pricing-feature highlight"><span class="pricing-feature-icon">✔️</span>高级 AI 引擎 2000 万 Token/月</div>
+          <div class="pricing-feature highlight"><span class="pricing-feature-icon">✔️</span>DeepSeek / Gemini / GPT 等顶级引擎</div>
+          <div class="pricing-feature highlight"><span class="pricing-feature-icon">✔️</span>PDF Pro 高级功能</div>
+          <div class="pricing-feature highlight"><span class="pricing-feature-icon">✔️</span>BabelDOC 高质量排版 PDF 翻译</div>
+          <div class="pricing-feature"><span class="pricing-feature-icon">✔️</span>AI 字幕生成 1000 分钟/月</div>
+          <div class="pricing-feature"><span class="pricing-feature-icon">✔️</span>YouTube 字幕下载 · 不限次数</div>
+          <div class="pricing-feature"><span class="pricing-feature-icon">✔️</span>多设备同步配置</div>
         </div>
-        <ul>
-          <li>用<strong>真实学术场景</strong>：arXiv / PubMed 论文或你研究中真实使用的文献</li>
-          <li>有条件加一段<strong>「竞品翻车」对比</strong>（如 Google 译错专业术语）</li>
-          <li>以<strong>屏幕录制为主</strong>，画面清晰稳定；每个卖点演示约 3–4 秒</li>
-          <li>结尾 ≥3 秒说清：<strong>免费可用 + Pro 折扣 / 福利</strong></li>
-        </ul>
-        <div style="margin-top:12px;padding:10px 14px;border-radius:8px;background:rgba(146,64,14,0.06);border:1px solid rgba(146,64,14,0.18);font-size:12px;color:var(--amber)">
-          ⚠️ <strong>自检三问：</strong>① 画面是否是真实学术使用场景？② 是否有至少一个竞品对比镜头？③ 是否明确提到「免费版 & Pro 福利 / 折扣码」？
+      </div>
+      <!-- Max 版 -->
+      <div class="pricing-card">
+        <div class="pricing-tier">Max · 极致版</div>
+        <div class="pricing-price">¥133 <span>/ 月（年付 ¥1599/年）</span></div>
+        <div class="pricing-price-note">免费试用 3 天，试用期可取消</div>
+        <div class="pricing-desc">适合对翻译质量要求最高的学术重度用户</div>
+        <div class="pricing-features">
+          <div class="pricing-feature highlight"><span class="pricing-feature-icon">✔️</span>顶级引擎 200 万 Token/月（GPT-5.2 / Claude 4.5 等）</div>
+          <div class="pricing-feature highlight"><span class="pricing-feature-icon">✔️</span>高级引擎 5000 万 Token/月</div>
+          <div class="pricing-feature"><span class="pricing-feature-icon">✔️</span>Pro 全部功能</div>
+          <div class="pricing-feature"><span class="pricing-feature-icon">✔️</span>适合每天大量翻译文献的重度用户</div>
         </div>
       </div>
     </div>
-  </div>
-</section>
 
-
-<!-- ===== PRODUCTION TIPS ===== -->
-<section id="tips">
-  <div class="inner">
-    <div class="sec-head reveal">
-      <div class="sec-label">Production Notes</div>
-      <h2 class="sec-title">制作建议</h2>
+    <!-- 关键制作要点 -->
+    <div class="sec-head reveal" style="margin-top:48px">
+      <div class="sec-label">Production Tips</div>
+      <h2 class="sec-title" style="font-size:28px">关键制作要点</h2>
       <p class="sec-desc">这些是帮助你做出高转化视频的实质性建议，不是强制要求。</p>
     </div>
     <div class="tips-grid reveal">
@@ -737,7 +783,7 @@
         <div class="tips-list">
           <div class="tips-item">
             <div class="tips-item-num">1</div>
-            <div><strong>开场必须有冲突感：</strong>用真实学术痛点开场，不要用"大家好我是某某"。例：「你还在用 Google 翻译看 arXiv 论文？公式全乱了，这个工具让我彻底告别这个噩梦」。</div>
+            <div><strong>开场必须有冲突感：</strong>用真实学术痛点开场，不要用"大家好我是某某"。例：「你还在用 Google 翻译看 arXiv 论文？公式全乱了吧，这个工具让我彻底告别这个噩梦」。</div>
           </div>
           <div class="tips-item">
             <div class="tips-item-num">2</div>
@@ -749,7 +795,7 @@
           </div>
           <div class="tips-item">
             <div class="tips-item-num">4</div>
-            <div><strong>CTA 必须具体：</strong>结尾说清楚「在评论区放了 Landing Page 链接 + 粉丝专属折扣码」，不要只说"去搜一搜"。</div>
+            <div><strong>CTA 必须具体：</strong>结尾说清楚「在评论区放了官网链接 + 粉丝专属折扣码」，不要只说"去搜一搜"。</div>
           </div>
         </div>
       </div>
@@ -761,7 +807,7 @@
         <div class="tips-list">
           <div class="tips-item">
             <div class="tips-item-num">1</div>
-            <div><strong>抖音 / 小红书首帧必须有文字：</strong>封面文字建议用"免费""必装""研究生必备"等高点击词，避免纯展示界面截图。</div>
+            <div><strong>抖音 / 小红书首帧必须有文字：</strong>封面文字建议用"免费""研究生必装""我用了 X 年"等高点击词，避免纯展示界面截图。</div>
           </div>
           <div class="tips-item">
             <div class="tips-item-num">2</div>
@@ -769,11 +815,11 @@
           </div>
           <div class="tips-item">
             <div class="tips-item-num">3</div>
-            <div><strong>评论区运营小技巧：</strong>发布后第一时间回复前 5 条评论，并主动把 Landing Page 链接和折扣码置顶，能显著提升转化。</div>
+            <div><strong>评论区运营小技巧：</strong>发布后第一时间回复前 5 条评论，并主动把官网链接和折扣码置顶，能显著提升转化。</div>
           </div>
           <div class="tips-item">
             <div class="tips-item-num">4</div>
-            <div><strong>展示安装流程要完整：</strong>展示安装时建议从官方 Landing Page 进入安装，不要直接跳过安装步骤，这是观众最容易卡壳的环节。</div>
+            <div><strong>展示安装流程要完整：</strong>展示安装时建议从官网进入安装，不要直接跳过安装步骤，这是观众最容易卡壳的环节。</div>
           </div>
         </div>
       </div>
@@ -782,12 +828,12 @@
 </section>
 
 <!-- ===== SCRIPT ===== -->
-<section class="brief-bg" id="script">
+<section id="script">
   <div class="inner">
     <div class="sec-head reveal">
       <div class="sec-label">Content Ideas</div>
       <h2 class="sec-title">内容灵感 / 脚本建议</h2>
-      <p class="sec-desc" style="white-space:nowrap;overflow:visible">4 种学术创作角度，每种都有完整的开场、展示和 CTA 话术参考。风格是你的，方向我们帮你想好了。</p>
+      <p class="sec-desc">4 种学术创作角度，每种都有完整的开场、展示和 CTA 话术参考。风格是你的，方向我们帮你想好了。</p>
     </div>
     <div class="func-limit-banner reveal">
       <div class="func-limit-icon">⚠️</div>
@@ -823,11 +869,11 @@
           </div>
           <div class="script-section">
             <div class="script-section-label">结尾 CTA</div>
-            <div class="script-quote">「完全免费，Chrome 商店直接搜'沉浸式翻译'就能装，链接放评论区了，还有粉丝专属 9 折折扣码和周卡抽奖，评论区见！」</div>
+            <div class="script-quote">「完全免费，Chrome 商店直接搜'沉浸式翻译'就能装，官网链接放评论区了，还有粉丝专属 9 折折扣码和周卡抽奖，评论区见！」</div>
           </div>
           <div class="notice-box">
             <span>🎯</span>
-            <span><strong>评论区必放：</strong>将粉丝专属 9 折折扣码与 Landing Page 链接同时置顶在评论区，并在视频结尾口播提到抽奖周卡的事。这两个动作直接影响转化效果，请务必完成。</span>
+            <span><strong>评论区必放：</strong>将粉丝专属 9 折折扣码与官网链接同时置顶在评论区，并在视频结尾口播提到抽奖周卡的事。这两个动作直接影响转化效果，请务必完成。</span>
           </div>
         </div>
       </div>
@@ -852,11 +898,11 @@
           </div>
           <div class="script-section">
             <div class="script-section-label">结尾 CTA</div>
-            <div class="script-quote">「免费版就够用了，链接在评论区，还有粉丝专属折扣码，如果你觉得好用想升级 Pro，可以用我的码打九折。」</div>
+            <div class="script-quote">「免费版就够用了，官网链接在评论区，还有粉丝专属折扣码，如果你觉得好用想升级 Pro，可以用我的码打九折。」</div>
           </div>
           <div class="notice-box">
             <span>🎯</span>
-            <span><strong>评论区必放：</strong>将粉丝专属 9 折折扣码与 Landing Page 链接同时置顶在评论区，并在视频结尾口播提到抽奖周卡的事。这两个动作直接影响转化效果，请务必完成。</span>
+            <span><strong>评论区必放：</strong>将粉丝专属 9 折折扣码与官网链接同时置顶在评论区，并在视频结尾口播提到抽奖周卡的事。这两个动作直接影响转化效果，请务必完成。</span>
           </div>
         </div>
       </div>
@@ -873,7 +919,7 @@
         <div class="script-body">
           <div class="script-section">
             <div class="script-section-label">开场钩子（前 5 秒）</div>
-            <div class="script-quote">「这个插件全球 1000 万人在用，还拿了谷歌 2024 年度精选，作为一个每天泡在文献里的研究生，我今天终于试了一下，真的有点离谱——」</div>
+            <div class="script-quote">「这个插件全球 2000 万人在用，还拿了谷歌 2024 年度精选，作为一个每天泡在文献里的研究生，我今天终于试了一下，真的有点离谱——」</div>
           </div>
           <div class="script-section">
             <div class="script-section-label">中段展示（重点演示 2 个功能）</div>
@@ -881,11 +927,11 @@
           </div>
           <div class="script-section">
             <div class="script-section-label">结尾 CTA</div>
-            <div class="script-quote">「免费的，Chrome 商店搜'沉浸式翻译'就能装，我在评论区放了链接，还有专属折扣码，另外我要抽 5 个小伙伴送免费周卡，评论区见！」</div>
+            <div class="script-quote">「免费的，Chrome 商店搜'沉浸式翻译'就能装，我在评论区放了官网链接，还有专属折扣码，另外我要抽 5 个小伙伴送免费周卡，评论区见！」</div>
           </div>
           <div class="notice-box">
             <span>🎯</span>
-            <span><strong>评论区必放：</strong>将粉丝专属 9 折折扣码与 Landing Page 链接同时置顶在评论区，并在视频结尾口播提到抽奖周卡的事。这两个动作直接影响转化效果，请务必完成。</span>
+            <span><strong>评论区必放：</strong>将粉丝专属 9 折折扣码与官网链接同时置顶在评论区，并在视频结尾口播提到抽奖周卡的事。这两个动作直接影响转化效果，请务必完成。</span>
           </div>
         </div>
       </div>
@@ -910,11 +956,11 @@
           </div>
           <div class="script-section">
             <div class="script-section-label">结尾 CTA</div>
-            <div class="script-quote">「结论就是：如果你经常看英文文献，沉浸式翻译值得装。免费的，链接在评论区，还有粉丝专属折扣码和周卡抽奖，评论区见！」</div>
+            <div class="script-quote">「结论就是：如果你经常看英文文献，沉浸式翻译值得装。免费的，官网链接在评论区，还有粉丝专属折扣码和周卡抽奖，评论区见！」</div>
           </div>
           <div class="notice-box">
             <span>🎯</span>
-            <span><strong>评论区必放：</strong>将粉丝专属 9 折折扣码与 Landing Page 链接同时置顶在评论区，并在视频结尾口播提到抽奖周卡的事。这两个动作直接影响转化效果，请务必完成。</span>
+            <span><strong>评论区必放：</strong>将粉丝专属 9 折折扣码与官网链接同时置顶在评论区，并在视频结尾口播提到抽奖周卡的事。这两个动作直接影响转化效果，请务必完成。</span>
           </div>
         </div>
       </div>
@@ -922,14 +968,14 @@
   </div>
 </section>
 
-
 <!-- ===== INSTALL ===== -->
-<section id="install">
+<section class="brief-bg
+" id="install">
   <div class="inner">
     <div class="sec-head reveal">
-      <div class="sec-label">Quick Start</div>
-      <h2 class="sec-title">安装 / 上手指引</h2>
-      <p class="sec-desc">录制前先自己装一遍，4 步搞定，顺便感受一下产品体验。</p>
+      <div class="sec-label">Installation Guide</div>
+      <h2 class="sec-title">安装指引</h2>
+      <p class="sec-desc">建议在视频中完整展示安装流程，这是观众最容易卡壳的环节。</p>
     </div>
     <div class="install-tabs">
       <button class="install-tab active" onclick="switchInstall(0)">🖥️ 浏览器插件</button>
@@ -939,27 +985,24 @@
       <div class="steps-row reveal">
         <div class="step-card">
           <div class="step-num">1</div>
-          <div class="step-title">打开插件商店</div>
-          <div class="step-desc">Chrome / Edge / Firefox / Safari，在扩展商店搜索「沉浸式翻译」</div>
+          <div class="step-title">打开官网</div>
+          <div class="step-desc">访问 immersivetranslate.com，点击「免费安装」按钮，跳转到 Chrome 应用商店</div>
         </div>
         <div class="step-card">
           <div class="step-num">2</div>
-          <div class="step-title">点击安装</div>
-          <div class="step-desc">点击「添加到 Chrome」，等待安装完成，右上角出现插件图标</div>
+          <div class="step-title">添加扩展</div>
+          <div class="step-desc">点击「添加到 Chrome」，弹窗点击「添加扩展程序」，安装完成后图标出现在工具栏</div>
         </div>
         <div class="step-card">
           <div class="step-num">3</div>
-          <div class="step-title">跟着引导走</div>
-          <div class="step-desc">首次安装会有使用引导，选择翻译引擎（默认免费引擎即可），一步步走完</div>
+          <div class="step-title">打开论文页面</div>
+          <div class="step-desc">访问任意 arXiv / PubMed 论文页面，点击插件图标，选择「翻译本页」</div>
         </div>
         <div class="step-card">
           <div class="step-num">4</div>
-          <div class="step-title">打开论文网站试试</div>
-          <div class="step-desc">打开 arXiv / PubMed，点击插件图标，双语对照立刻出现；或上传 PDF 试用 BabelDOC</div>
+          <div class="step-title">体验 BabelDOC</div>
+          <div class="step-desc">点击「翻译 PDF」→ 选择 BabelDOC 引擎，上传论文 PDF，等待生成双语版</div>
         </div>
-      </div>
-      <div style="margin-top:20px;padding:16px 20px;border-radius:var(--radius-sm);background:rgba(55,48,163,0.05);border:1px solid rgba(55,48,163,0.14);font-size:13px;color:var(--text-secondary)">
-        💡 <strong style="color:var(--indigo)">录制建议：</strong>可以用 Landing Page 链接直接引导观众安装，比让他们自己搜索转化率更高。链接：<a href="https://immersivetranslate.com/zh-Hans/" target="_blank" style="color:var(--indigo)">immersivetranslate.com/zh-Hans/</a>
       </div>
     </div>
     <div class="install-panel" id="install-1">
@@ -967,173 +1010,167 @@
         <div class="step-card">
           <div class="step-num">1</div>
           <div class="step-title">下载 App</div>
-          <div class="step-desc">iOS 在 App Store 搜索「沉浸式翻译」，Android 可在官网下载 APK</div>
+          <div class="step-desc">App Store 搜索「沉浸式翻译」，或访问官网扫码下载 Android APK</div>
         </div>
         <div class="step-card">
           <div class="step-num">2</div>
-          <div class="step-title">开启权限</div>
-          <div class="step-desc">开启「全局输入法」权限，即可在任意 App 的输入框中使用翻译功能</div>
+          <div class="step-title">登录账号</div>
+          <div class="step-desc">用邮箱或微信登录，免费版直接使用，Pro 用户可同步桌面端配置</div>
         </div>
         <div class="step-card">
           <div class="step-num">3</div>
-          <div class="step-title">登录账号</div>
-          <div class="step-desc">用邮箱注册 / 登录，同步你在浏览器插件端的配置和会员权益</div>
+          <div class="step-title">翻译 PDF</div>
+          <div class="step-desc">点击「文档翻译」，上传论文 PDF，选择目标语言，等待生成双语版</div>
         </div>
         <div class="step-card">
           <div class="step-num">4</div>
-          <div class="step-title">打开学术 App 试试</div>
-          <div class="step-desc">在手机浏览器打开 arXiv，或在输入框中测试中英互译功能</div>
+          <div class="step-title">开启沉浸阅读</div>
+          <div class="step-desc">在内置浏览器中打开学术网站，点击翻译按钮，即可双语对照阅读</div>
         </div>
-      </div>
-      <div style="margin-top:20px;padding:16px 20px;border-radius:var(--radius-sm);background:rgba(55,48,163,0.05);border:1px solid rgba(55,48,163,0.14);font-size:13px;color:var(--text-secondary)">
-        💡 <strong style="color:var(--indigo)">其他安装方式：</strong>Tampermonkey 脚本适配国产浏览器等环境，详见官网。
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== VIDEO ===== -->
-<section class="brief-bg" id="video">
-  <div class="inner">
-    <div class="sec-head reveal">
-      <div class="sec-label">Official Demo</div>
-      <h2 class="sec-title">官方演示视频</h2>
-      <p class="sec-desc">官方功能演示视频，先看一遍再录制，把握核心亮点和展示节奏。</p>
-    </div>
-    <div class="reveal">
-      <div class="video-label">📽️ 官方 · 中文演示</div>
-      <div class="video-wrap">
-        <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden">
-          <iframe
-            src="https://player.bilibili.com/player.html?bvid=BV1sozmYmEYr&page=1&high_quality=1&danmaku=0"
-            style="position:absolute;top:0;left:0;width:100%;height:100%;border:none"
-            allowfullscreen
-            allow="autoplay; fullscreen"
-            title="沉浸式翻译官方演示视频"
-          ></iframe>
-        </div>
-      </div>
-      <div style="margin-top:14px;padding:14px 18px;border-radius:var(--radius-sm);background:rgba(55,48,163,0.05);border:1px solid rgba(55,48,163,0.14);font-size:13px;color:var(--text-secondary)">
-        📝 <strong style="color:var(--indigo)">参考说明：</strong>这是官方功能演示视频，整体流程和核心使用场景都在里面。全部看完再录制，功能逻辑会更清晰。你的版本不需要照搬，加入你自己的学术使用场景会更有说服力。
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== REFS ===== -->
+<!-- ===== REF VIDEOS ===== -->
 <section id="refs">
   <div class="inner">
     <div class="sec-head reveal">
       <div class="sec-label">Reference Videos</div>
       <h2 class="sec-title">爆款参考</h2>
-      <p class="sec-desc">这些是已经跑出数据的合作视频，看看他们的开场、展示方式和 CTA 设计，找到适合你风格的参考。</p>
+      <p class="sec-desc">以下是已经跑出不错数据的合作视频，可以参考选题角度、封面设计和开场方式，但请保持你自己的风格。</p>
     </div>
-    <!-- B站行 -->
+
+    <!-- B站 -->
     <div class="ref-platform-row reveal">
       <div class="ref-platform-label">
-        <span class="ref-platform-label-dot" style="background:#00a1d6"></span>
-        <span style="color:#00a1d6">B 站</span>
-        <span>爆款参考</span>
+        <div class="ref-platform-label-dot" style="background:#00a1d6"></div>
+        Bilibili · B站
       </div>
       <div class="ref-scroll">
-        <a class="ref-card" href="https://www.bilibili.com/video/BV1sozmYmEYr/" target="_blank">
-          <div class="ref-thumb" style="background:linear-gradient(135deg,#e8f4f8,#d0e8f0)">
-            <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px">
-              <div style="font-size:36px">📄</div>
-              <div style="font-size:11px;color:rgba(0,0,0,0.5);font-weight:600">点击查看视频 ↗</div>
-            </div>
-            <div class="ref-play"><div class="ref-play-btn" style="background:rgba(0,161,214,0.85)">▶</div></div>
+        <a href="https://www.bilibili.com/video/BV1Wr9EYKEer/" target="_blank" class="ref-card">
+          <div class="ref-thumb">
+            <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg" alt="" onerror="this.style.display='none'" />
+            <div class="ref-play"><div class="ref-play-btn">▶</div></div>
             <div class="ref-platform-badge ref-bili">B站</div>
           </div>
           <div class="ref-body">
-            <div class="ref-title">沉浸式翻译 × 学术场景完整演示</div>
-            <div class="ref-author">官方演示</div>
-            <div class="ref-stats"><div class="ref-stat">🔗 点击查看</div></div>
-            <div class="ref-tags"><span class="ref-tag-item">📄 论文翻译</span><span class="ref-tag-item">🎓 学术场景</span></div>
+            <div class="ref-title">沉浸式翻译 · 学术场景实测</div>
+            <div class="ref-author">@学术类达人</div>
+            <div class="ref-tags">
+              <span class="ref-tag-item">论文翻译</span>
+              <span class="ref-tag-item">BabelDOC</span>
+            </div>
           </div>
         </a>
-        <a class="ref-card" href="https://www.bilibili.com/video/BV1sozmYmEYr/" target="_blank">
-          <div class="ref-thumb" style="background:linear-gradient(135deg,#f0e8f8,#e0d0f0)">
-            <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px">
-              <div style="font-size:36px">📚</div>
-              <div style="font-size:11px;color:rgba(0,0,0,0.5);font-weight:600">点击查看视频 ↗</div>
-            </div>
-            <div class="ref-play"><div class="ref-play-btn" style="background:rgba(0,161,214,0.85)">▶</div></div>
+        <a href="https://www.bilibili.com/video/BV1hQvWBBEG1/" target="_blank" class="ref-card">
+          <div class="ref-thumb">
+            <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg" alt="" onerror="this.style.display='none'" />
+            <div class="ref-play"><div class="ref-play-btn">▶</div></div>
             <div class="ref-platform-badge ref-bili">B站</div>
           </div>
           <div class="ref-body">
-            <div class="ref-title">导师不会教但你得会的文献阅读法 📚 #沉浸式翻译</div>
-            <div class="ref-author">一只眠</div>
-            <div class="ref-stats"><div class="ref-stat">🔗 点击查看</div></div>
-            <div class="ref-tags"><span class="ref-tag-item">🎓 学术场景切入</span><span class="ref-tag-item">📝 实操教程风格</span></div>
+            <div class="ref-title">研究生必装 · 文献阅读效率翻倍</div>
+            <div class="ref-author">@学术类达人</div>
+            <div class="ref-tags">
+              <span class="ref-tag-item">效率工具</span>
+              <span class="ref-tag-item">文献阅读</span>
+            </div>
           </div>
         </a>
       </div>
     </div>
-    <!-- 抖音行 -->
+
+    <!-- 抖音 -->
     <div class="ref-platform-row reveal">
       <div class="ref-platform-label">
-        <span class="ref-platform-label-dot" style="background:#222"></span>
-        <span style="color:#444">抖音</span>
-        <span>爆款参考</span>
+        <div class="ref-platform-label-dot" style="background:#000"></div>
+        抖音 Douyin
       </div>
       <div class="ref-scroll">
-        <a class="ref-card" href="https://www.douyin.com/user/MS4wLjABAAAA1EoQbBircw21nV80pLeOHzQkFCw83F4lhxkK-j7coG8?modal_id=7495055146188655931" target="_blank">
-          <div class="ref-thumb" style="background:linear-gradient(135deg,#e8f0e8,#d0e8d0)">
-            <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px">
-              <div style="font-size:36px">🔬</div>
-              <div style="font-size:11px;color:rgba(0,0,0,0.5);font-weight:600">点击查看视频 ↗</div>
-            </div>
-            <div class="ref-play"><div class="ref-play-btn" style="background:rgba(0,0,0,0.8)">▶</div></div>
+        <a href="https://www.douyin.com/user/MS4wLjABAAAA1EoQbBircw21nV80pLeOHzQkFCw83F4lhxkK-j7coG8?from_tab_name=main&modal_id=7495055146188655931" target="_blank" class="ref-card">
+          <div class="ref-thumb">
+            <div style="width:100%;height:100%;background:linear-gradient(135deg,#1a1a2e,#16213e);display:flex;align-items:center;justify-content:center;font-size:32px">🎓</div>
+            <div class="ref-play"><div class="ref-play-btn">▶</div></div>
             <div class="ref-platform-badge ref-douyin">抖音</div>
           </div>
           <div class="ref-body">
-            <div class="ref-title">研究生必备！论文翻译神器实测，公式排版完整保留</div>
-            <div class="ref-author">抖音学术达人</div>
-            <div class="ref-stats"><div class="ref-stat">🔗 点击查看</div></div>
-            <div class="ref-tags"><span class="ref-tag-item">📄 PDF翻译</span><span class="ref-tag-item">🎓 研究生向</span></div>
+            <div class="ref-title">看论文再也不怕公式乱码了</div>
+            <div class="ref-author">@学术类达人</div>
+            <div class="ref-tags">
+              <span class="ref-tag-item">痛点型</span>
+              <span class="ref-tag-item">论文</span>
+            </div>
+          </div>
+        </a>
+        <a href="https://www.douyin.com/video/7555717905796762940" target="_blank" class="ref-card">
+          <div class="ref-thumb">
+            <div style="width:100%;height:100%;background:linear-gradient(135deg,#1a1a2e,#16213e);display:flex;align-items:center;justify-content:center;font-size:32px">📄</div>
+            <div class="ref-play"><div class="ref-play-btn">▶</div></div>
+            <div class="ref-platform-badge ref-douyin">抖音</div>
+          </div>
+          <div class="ref-body">
+            <div class="ref-title">沉浸式翻译 · 学术场景演示</div>
+            <div class="ref-author">@学术类达人</div>
+            <div class="ref-tags">
+              <span class="ref-tag-item">演示型</span>
+              <span class="ref-tag-item">安利</span>
+            </div>
           </div>
         </a>
       </div>
     </div>
-    <!-- 小红书行 -->
+
+    <!-- 小红书 -->
     <div class="ref-platform-row reveal">
       <div class="ref-platform-label">
-        <span class="ref-platform-label-dot" style="background:#ff2a2a"></span>
-        <span style="color:#ff2a2a">小红书</span>
-        <span>爆款参考</span>
+        <div class="ref-platform-label-dot" style="background:#ff2a2a"></div>
+        小红书 Xiaohongshu
       </div>
       <div class="ref-scroll">
-        <a class="ref-card" href="https://www.xiaohongshu.com/explore/6978022d000000001a01dd99?xsec_token=MBFVCAKgmXrgrzR5n-cOiWOcLYXWTIWNaKTKHxpkp2vpI=&xsec_source=pc_pgy" target="_blank">
-          <div class="ref-thumb" style="background:linear-gradient(135deg,#f8e8e8,#f0d0d0)">
-            <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px">
-              <div style="font-size:36px">🌐</div>
-              <div style="font-size:11px;color:rgba(0,0,0,0.5);font-weight:600">点击查看笔记 ↗</div>
-            </div>
-            <div class="ref-play"><div class="ref-play-btn" style="background:rgba(255,42,42,0.85)">▶</div></div>
+        <a href="https://www.xiaohongshu.com/explore/69a92e4c0000000015039bae?xsec_token=MBcxZHQMUKToCXWAVzKh0GK6slaxcyqkbTxhYbNjuqOQI=&xsec_source=pc_pgyexport" target="_blank" class="ref-card">
+          <div class="ref-thumb">
+            <div style="width:100%;height:100%;background:linear-gradient(135deg,#fff1f2,#ffe4e6);display:flex;align-items:center;justify-content:center;font-size:32px">🍠</div>
+            <div class="ref-play"><div class="ref-play-btn">▶</div></div>
             <div class="ref-platform-badge ref-xhs">小红书</div>
           </div>
           <div class="ref-body">
-            <div class="ref-title">这个插件让我彻底告别翻译软件！arXiv 双语对照太爽了</div>
-            <div class="ref-author">小红书学术达人</div>
-            <div class="ref-stats"><div class="ref-stat">🔗 点击查看</div></div>
-            <div class="ref-tags"><span class="ref-tag-item">💡 痛点切入</span><span class="ref-tag-item">🌐 学术网页翻译</span></div>
+            <div class="ref-title">研究生必装的 AI 翻译工具</div>
+            <div class="ref-author">@学术类达人</div>
+            <div class="ref-tags">
+              <span class="ref-tag-item">安利型</span>
+              <span class="ref-tag-item">研究生</span>
+            </div>
           </div>
         </a>
-        <a class="ref-card" href="https://www.xiaohongshu.com/explore/673c3e6a000000000702a90e?xsec_token=ABEI65AlUn8q5YvExq_Xc1j2_G9Dsx42lBdh83oYy19BM=&xsec_source=pc_user" target="_blank">
-          <div class="ref-thumb" style="background:linear-gradient(135deg,#e8f0f8,#d0e0f0)">
-            <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px">
-              <div style="font-size:36px">📄</div>
-              <div style="font-size:11px;color:rgba(0,0,0,0.5);font-weight:600">点击查看笔记 ↗</div>
-            </div>
-            <div class="ref-play"><div class="ref-play-btn" style="background:rgba(255,42,42,0.85)">▶</div></div>
+        <a href="https://www.xiaohongshu.com/explore/69a2ba13000000002602d212?xsec_token=MBMkHgqd3pytGf2cAICVCWTOdVKa5jcdpAdBC5uvYBxBI=&xsec_source=pc_pgyexport" target="_blank" class="ref-card">
+          <div class="ref-thumb">
+            <div style="width:100%;height:100%;background:linear-gradient(135deg,#fff1f2,#ffe4e6);display:flex;align-items:center;justify-content:center;font-size:32px">📚</div>
+            <div class="ref-play"><div class="ref-play-btn">▶</div></div>
             <div class="ref-platform-badge ref-xhs">小红书</div>
           </div>
           <div class="ref-body">
-            <div class="ref-title">英文PDF不用再一句句翻了！BabelDOC直接保留排版双语对照</div>
-            <div class="ref-author">小红书学术达人</div>
-            <div class="ref-stats"><div class="ref-stat">🔗 点击查看</div></div>
-            <div class="ref-tags"><span class="ref-tag-item">📄 PDF翻译场景</span><span class="ref-tag-item">🏆 工具安利型</span></div>
+            <div class="ref-title">看外文文献效率翻倍的方法</div>
+            <div class="ref-author">@学术类达人</div>
+            <div class="ref-tags">
+              <span class="ref-tag-item">效率型</span>
+              <span class="ref-tag-item">文献</span>
+            </div>
+          </div>
+        </a>
+        <a href="https://www.xiaohongshu.com/explore/699d7725000000000a02b079?app_platform=ios&app_version=9.19.5&share_from_user_hidden=true&xsec_source=app_share&type=video&xsec_token=CBWnJnadSMBaQqR5FpWh3Va3D6xqrBpykvyHs0iyitXoA=&author_share=1&xhsshare=CopyLink&shareRedId=ODxFMkdHPEs2NzUyOTgwNjdHOTo0OT09&apptime=1772413880&share_id=194e36791bda4f94af7b27ac5cbcd65d" target="_blank" class="ref-card">
+          <div class="ref-thumb">
+            <div style="width:100%;height:100%;background:linear-gradient(135deg,#fff1f2,#ffe4e6);display:flex;align-items:center;justify-content:center;font-size:32px">🔬</div>
+            <div class="ref-play"><div class="ref-play-btn">▶</div></div>
+            <div class="ref-platform-badge ref-xhs">小红书</div>
+          </div>
+          <div class="ref-body">
+            <div class="ref-title">学术论文翻译神器实测</div>
+            <div class="ref-author">@学术类达人</div>
+            <div class="ref-tags">
+              <span class="ref-tag-item">测评型</span>
+              <span class="ref-tag-item">对比</span>
+            </div>
           </div>
         </a>
       </div>
@@ -1141,14 +1178,13 @@
   </div>
 </section>
 
-
 <!-- ===== COLLAB FLOW ===== -->
 <section class="collab-bg" id="collab">
   <div class="inner">
     <div class="sec-head reveal">
-      <div class="sec-label">Collaboration</div>
+      <div class="sec-label">Collaboration Flow</div>
       <h2 class="sec-title">合作流程</h2>
-      <p class="sec-desc">从接触到结案，整个流程尽量简化，不占用你太多时间。</p>
+      <p class="sec-desc">从接洽到发布，6 个步骤，清晰透明，没有隐藏流程。</p>
     </div>
     <div class="flow-steps">
       <div class="flow-step reveal">
@@ -1157,13 +1193,13 @@
           <div class="flow-step-line"></div>
         </div>
         <div class="flow-step-right">
-          <div class="flow-step-tag fst-1">初步接触</div>
-          <div class="flow-step-title">双方确认合作意向</div>
-          <div class="flow-step-desc">通过页面左侧的「我要恰这个饭」按钮，添加对应平台的负责人微信。第一条消息建议说明你的平台、账号链接和大致粉丝规模，方便我们快速评估合作可行性，我们也会主动联系符合条件的创作者。</div>
+          <div class="flow-step-tag fst-1">接洽确认</div>
+          <div class="flow-step-title">添加对应平台负责人微信，说明账号信息</div>
+          <div class="flow-step-desc">根据你主要创作的平台，直接添加对应同事的微信，说明你的平台、粉丝规模，并发送账号链接，我们会在 1 个工作日内回复。</div>
           <div class="flow-step-items">
-            <span class="flow-item">📱 微信添加对接人</span>
-            <span class="flow-item">📊 说明平台和粉丝规模</span>
-            <span class="flow-item">🔗 发送账号链接</span>
+            <span class="flow-item">📱 发送账号链接</span>
+            <span class="flow-item">👥 说明粉丝规模</span>
+            <span class="flow-item">📋 说明内容方向</span>
           </div>
         </div>
       </div>
@@ -1173,18 +1209,13 @@
           <div class="flow-step-line"></div>
         </div>
         <div class="flow-step-right">
-          <div class="flow-step-tag fst-2">商谈确认</div>
-          <div class="flow-step-title">双方确认合作内容、报价与联盟计划</div>
-          <div class="flow-step-desc">我们会与你确认视频内容方向、发布时间节点和报价。这个阶段我们会尽量简化，不会占用你太多时间。如果你已经看过这个页面，大部分内容方向都已经就绪了。</div>
-          <div class="flow-step-desc" style="margin-top:10px">此外，我们会在这一步确认你是否加入<strong style="color:var(--teal)">沉浸式翻译联盟计划</strong>——这会影响后续折扣码的配置方式。加入联盟计划后，你可以通过专属推广链接获得持续佣金收益，适合希望长期合作的创作者。</div>
+          <div class="flow-step-tag fst-2">资料发放</div>
+          <div class="flow-step-title">我们发给你这份合作素材页 + 专属折扣码</div>
+          <div class="flow-step-desc">确认合作后，我们会发给你这份合作参考页面链接、粉丝专属 9 折折扣码、官方 Logo 素材，以及 Pro 免费体验账号（供录制使用）。</div>
           <div class="flow-step-items">
-            <span class="flow-item">📝 内容方向确认</span>
-            <span class="flow-item">📅 发布时间确认</span>
-            <span class="flow-item">💰 报价确认</span>
-            <span class="flow-item" style="background:rgba(13,148,136,0.07);border-color:rgba(13,148,136,0.2);color:var(--teal)">🔗 联盟计划确认</span>
-          </div>
-          <div style="margin-top:12px">
-            <a href="https://immersivetranslate.com/en/affiliate/" target="_blank" style="display:inline-flex;align-items:center;gap:7px;padding:7px 14px;border-radius:var(--radius-sm);background:rgba(13,148,136,0.07);border:1px solid rgba(13,148,136,0.22);color:var(--teal);font-size:12px;font-weight:600;text-decoration:none">🔗 了解联盟计划详情 ↗</a>
+            <span class="flow-item">🔗 合作参考页面</span>
+            <span class="flow-item">🏷️ 粉丝专属折扣码</span>
+            <span class="flow-item">🎁 Pro 免费体验账号</span>
           </div>
         </div>
       </div>
@@ -1194,13 +1225,13 @@
           <div class="flow-step-line"></div>
         </div>
         <div class="flow-step-right">
-          <div class="flow-step-tag fst-3">合同与预付</div>
-          <div class="flow-step-title">签署合同，预付部分报价</div>
-          <div class="flow-step-desc">双方确认合作细节后，签署合作合同并预付部分报价。合同中会明确内容要求、发布时间和报价方式，保障双方权益。</div>
+          <div class="flow-step-tag fst-3">内容创作</div>
+          <div class="flow-step-title">按你的风格自由创作，我们不审稿</div>
+          <div class="flow-step-desc">我们不要求审稿，也不限制你的创作风格。你可以参考这份素材页的内容方向，但最终内容完全由你决定。唯一的要求是：视频中提到的功能信息需要准确，不要夸大或虚假宣传。</div>
           <div class="flow-step-items">
-            <span class="flow-item">📄 签署合同</span>
-            <span class="flow-item">💳 预付部分报价</span>
-            <span class="flow-item">🔒 权益保障</span>
+            <span class="flow-item">✍️ 自由创作风格</span>
+            <span class="flow-item">✅ 功能信息准确</span>
+            <span class="flow-item">🚫 不审稿</span>
           </div>
         </div>
       </div>
@@ -1210,13 +1241,13 @@
           <div class="flow-step-line"></div>
         </div>
         <div class="flow-step-right">
-          <div class="flow-step-tag fst-4">创作与审核</div>
-          <div class="flow-step-title">自由创作，两个节点对齐一下就行</div>
-          <div class="flow-step-desc">我们鼓励你用自己的风格和语言创作，不需要按照脚本字字照念。有两个轻量审核节点：<strong style="color:var(--text-primary)">①脚本审核</strong>——开拍前我们确认一下关键信息有没有跑偏；<strong style="color:var(--text-primary)">②视频审核</strong>——发布前快速过一遍，主要是避免误导观众，不干涉你的内容风格。</div>
+          <div class="flow-step-tag fst-1">联盟计划</div>
+          <div class="flow-step-title">加入联盟计划，每笔转化都有佣金</div>
+          <div class="flow-step-desc">除了合作费用，我们强烈建议你同时加入沉浸式翻译联盟计划。你的粉丝通过你的专属链接购买 Pro，你可以获得持续的佣金收入，这是很多达人的长期被动收入来源。</div>
           <div class="flow-step-items">
-            <span class="flow-item">🎨 自由创作，风格自定</span>
-            <span class="flow-item">📝 脚本审核（开拍前）</span>
-            <span class="flow-item">🎬 视频审核（发布前）</span>
+            <span class="flow-item">💰 每笔转化有佣金</span>
+            <span class="flow-item">🔗 专属推广链接</span>
+            <a href="https://immersivetranslate.com/zh-Hans/affiliate/" target="_blank" class="flow-item" style="color:var(--indigo);border-color:rgba(55,48,163,0.25)">📋 查看联盟计划详情 ↗</a>
           </div>
         </div>
       </div>
@@ -1226,9 +1257,9 @@
           <div class="flow-step-line"></div>
         </div>
         <div class="flow-step-right">
-          <div class="flow-step-tag fst-5">发布与结案</div>
-          <div class="flow-step-title">视频上线，尾款到账</div>
-          <div class="flow-step-desc">视频按时发布后，将 Landing Page 链接与粉丝专属折扣码置顶在评论区，并将视频链接反馈给我们。我们核实发布后，将尾款打到你的账户。</div>
+          <div class="flow-step-tag fst-3">发布 &amp; 结算</div>
+          <div class="flow-step-title">视频发布，评论区置顶链接与折扣码，尾款到账</div>
+          <div class="flow-step-desc">视频发布后，请在评论区置顶官网链接和粉丝专属折扣码，并在视频结尾提到周卡抽奖。这些动作直接影响转化效果，也是我们结算尾款的前提条件。</div>
           <div class="benefit-cards">
             <div class="benefit-card benefit-card-amber">
               <div style="font-size:11px;font-weight:800;color:var(--amber);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:6px">🎁 粉丝福利 · 免费周卡抽奖</div>
@@ -1243,7 +1274,7 @@
           </div>
           <div class="flow-step-items" style="margin-top:16px">
             <span class="flow-item">🔗 评论区置顶链接与折扣码</span>
-            <span class="flow-item" style="background:rgba(146,64,14,0.07);border-color:rgba(146,64,14,0.18);color:var(--amber)">🎁 抽奖周卡已就位</span>
+            <span class="flow-item" style="background:rgba(146,64,14,0.06);border-color:rgba(146,64,14,0.18);color:var(--amber)">🎁 抽奖周卡已就位</span>
             <span class="flow-item">💰 尾款到账</span>
           </div>
         </div>
@@ -1254,7 +1285,7 @@
           <div class="flow-step-line"></div>
         </div>
         <div class="flow-step-right">
-          <div class="flow-step-tag" style="background:rgba(22,101,52,0.08);border:1px solid rgba(22,101,52,0.22);color:var(--green)">专属福利</div>
+          <div class="flow-step-tag fst-4">专属福利</div>
           <div class="flow-step-title">发布后一周，我们帮你免费投流 🎁</div>
           <div class="flow-step-desc">视频发布后的第一周，我们会持续观察自然流量表现。如果数据跑得不错，我们会根据情况酌情为你的视频进行<strong style="color:var(--green)">免费投流加热</strong>，帮你触达更多潜在观众——这是我们对合作创作者的额外回馈，不是所有合作都有，但我们会尽量争取。</div>
           <div class="flow-step-items">
@@ -1320,10 +1351,10 @@
       <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663402005199/AdlZOKmKnlgVUZuk.jpg" style="width:24px;height:24px;border-radius:6px;object-fit:cover" alt="" />
       <span style="font-size:15px;font-weight:800;color:var(--text-primary)">沉浸式翻译</span>
     </div>
-    <div class="footer-desc">全球 1000 万+ 用户信赖的 AI 翻译工具 · 学术类达人合作素材</div>
+    <div class="footer-desc">全球 2000 万+ 用户信赖的 AI 翻译工具 · 学术类达人合作素材</div>
     <div style="margin-top:16px;display:flex;justify-content:center;gap:20px;flex-wrap:wrap">
-      <a href="https://immersivetranslate.com/zh-Hans/" target="_blank" style="font-size:12px;color:var(--text-muted)">官方网站</a>
-      <a href="https://immersivetranslate.com/en/affiliate/" target="_blank" style="font-size:12px;color:var(--text-muted)">联盟计划</a>
+      <a href="https://immersivetranslate.com/zh-Hans/" target="_blank" style="font-size:12px;color:var(--text-muted)">官网</a>
+      <a href="https://immersivetranslate.com/zh-Hans/affiliate/" target="_blank" style="font-size:12px;color:var(--text-muted)">联盟计划</a>
       <a href="#brief" style="font-size:12px;color:var(--text-muted)">产品简报</a>
       <a href="#script" style="font-size:12px;color:var(--text-muted)">脚本建议</a>
     </div>
@@ -1384,13 +1415,11 @@
 </div>
 
 <script>
-  // ===== REVEAL =====
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  // ===== 3D LOGO TILT =====
   const logo3d = document.querySelector('.logo-3d-img');
   if (logo3d) {
     document.querySelector('.logo-3d-wrap').addEventListener('mousemove', (e) => {
@@ -1406,7 +1435,6 @@
     });
   }
 
-  // ===== TABS =====
   function switchScript(i) {
     document.querySelectorAll('.script-tab').forEach((t,j) => t.classList.toggle('active', i===j));
     document.querySelectorAll('.script-panel').forEach((p,j) => p.classList.toggle('active', i===j));
@@ -1415,17 +1443,11 @@
     document.querySelectorAll('.install-tab').forEach((t,j) => t.classList.toggle('active', i===j));
     document.querySelectorAll('.install-panel').forEach((p,j) => p.classList.toggle('active', i===j));
   }
-
-  // ===== MOBILE NAV =====
   function openMobileNav() { document.getElementById('mobileNav').classList.add('open'); }
   function closeMobileNav() { document.getElementById('mobileNav').classList.remove('open'); }
-
-  // ===== MODAL =====
   function openCollabModal() { document.getElementById('collabModal').classList.add('open'); }
   function openShareModal() { document.getElementById('shareModal').classList.add('open'); }
   function closeModal(id) { document.getElementById(id).classList.remove('open'); }
-
-  // ===== COPY WX =====
   function copyWx(btn, id) {
     if (navigator.clipboard) {
       navigator.clipboard.writeText(id).then(() => {
@@ -1438,8 +1460,6 @@
       setTimeout(() => { btn.textContent = '复制微信号'; btn.classList.remove('copied'); }, 2000);
     }
   }
-
-  // ===== SHARE =====
   function shareToWechat() { alert('请截图或复制链接，通过微信分享给朋友。'); }
   function shareToWeibo() { window.open('https://service.weibo.com/share/share.php?url='+encodeURIComponent(location.href)+'&title=沉浸式翻译×学术类达人合作参考页面', '_blank'); }
   function copyLink() {
