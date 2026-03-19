@@ -796,6 +796,37 @@
     .bdoc-details-body img:hover { opacity:0.85; }
     .brief-img-details img { cursor:zoom-in; transition:opacity 0.2s; }
     .brief-img-details img:hover { opacity:0.85; }
+    .feat-img-toggle { margin-top: 8px; }
+    .feat-img-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--indigo);
+      padding: 5px 10px;
+      border-radius: 6px;
+      background: rgba(55,48,163,0.06);
+      border: 1px solid rgba(55,48,163,0.15);
+      cursor: pointer;
+      transition: background 0.2s;
+      font-family: inherit;
+    }
+    .feat-img-btn:hover { background: rgba(55,48,163,0.12); }
+    .feat-img-btn.open { background: rgba(55,48,163,0.12); }
+    .feat-img-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+      margin-top: 0;
+    }
+    .feat-img-body.open {
+      max-height: 600px;
+      margin-top: 8px;
+    }
+    .feat-img-body a { display: block; }
+    .feat-img-body img { cursor: zoom-in; border-radius: 8px; display: block; width: 100%; }
+    .feat-img-body img:hover { opacity: 0.85; }
   </style>
 </head>
 <body>
@@ -1098,6 +1129,53 @@
             </tbody>
           </table>
           </div>
+          <hr style="border:none;border-top:1px solid rgba(217,119,6,0.15);margin:16px 0" />
+          <!-- 对比截图区 -->
+          <div style="font-size:12px;font-weight:700;color:#92400e;margin-bottom:10px;">📸 对比截图（可直接截图上镜）<span style="font-size:11px;font-weight:400;color:#8a7a5a;margin-left:6px;">原文 vs 其他工具 vs BabelDOC</span></div>
+          <!-- ① 公式翻译 -->
+          <div style="margin-bottom:16px;">
+            <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:8px;">① 公式翻译效果对比</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+              <div style="text-align:center;"><div style="font-size:11px;font-weight:700;color:#4a3a1a;margin-bottom:5px;padding:3px 8px;background:rgba(254,243,199,0.6);border-radius:6px;">📄 原文</div><img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663402005199/MwxWctrRiqUYhpJc.PNG" alt="原文公式" style="width:100%;border-radius:8px;border:1px solid rgba(180,140,60,0.2);" data-lightbox="true" data-group="zh-formula" /></div>
+              <div style="text-align:center;"><div style="font-size:11px;font-weight:700;color:#991b1b;margin-bottom:5px;padding:3px 8px;background:rgba(254,226,226,0.6);border-radius:6px;">❌ 其他工具（公式乱码）</div><img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663402005199/oZzLKllqmzAoHSAw.PNG" alt="其他工具公式乱码" style="width:100%;border-radius:8px;border:1px solid rgba(153,27,27,0.2);" data-lightbox="true" data-group="zh-formula" /></div>
+              <div style="text-align:center;"><div style="font-size:11px;font-weight:700;color:#166534;margin-bottom:5px;padding:3px 8px;background:rgba(220,252,231,0.6);border-radius:6px;">✅ BabelDOC（公式完整保留）</div><img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663402005199/JbPdNvMVsKwzmAnf.PNG" alt="BabelDOC公式保留" style="width:100%;border-radius:8px;border:1px solid rgba(22,101,52,0.2);" data-lightbox="true" data-group="zh-formula" /></div>
+            </div>
+          </div>
+          <!-- ② 矢量图翻译 -->
+          <div style="margin-bottom:16px;">
+            <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:8px;">② 矢量图翻译效果对比</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+              <div style="text-align:center;"><div style="font-size:11px;font-weight:700;color:#4a3a1a;margin-bottom:5px;padding:3px 8px;background:rgba(254,243,199,0.6);border-radius:6px;">📄 原文</div><img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663402005199/gNiyyZegdTnjtjIw.PNG" alt="原文矢量图" style="width:100%;border-radius:8px;border:1px solid rgba(180,140,60,0.2);" data-lightbox="true" data-group="zh-vector" /></div>
+              <div style="text-align:center;"><div style="font-size:11px;font-weight:700;color:#991b1b;margin-bottom:5px;padding:3px 8px;background:rgba(254,226,226,0.6);border-radius:6px;">❌ 其他工具（标注误译）</div><img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663402005199/bhZJcHYUxvaNpyLi.PNG" alt="其他工具矢量图误译" style="width:100%;border-radius:8px;border:1px solid rgba(153,27,27,0.2);" data-lightbox="true" data-group="zh-vector" /></div>
+              <div style="text-align:center;"><div style="font-size:11px;font-weight:700;color:#166534;margin-bottom:5px;padding:3px 8px;background:rgba(220,252,231,0.6);border-radius:6px;">✅ BabelDOC（标注精准翻译）</div><img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663402005199/pipmNkikOZGuqYmM.PNG" alt="BabelDOC矢量图翻译" style="width:100%;border-radius:8px;border:1px solid rgba(22,101,52,0.2);" data-lightbox="true" data-group="zh-vector" /></div>
+            </div>
+          </div>
+          <!-- ③ 图表翻译 -->
+          <div style="margin-bottom:16px;">
+            <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:8px;">③ 图表翻译效果对比</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+              <div style="text-align:center;"><div style="font-size:11px;font-weight:700;color:#4a3a1a;margin-bottom:5px;padding:3px 8px;background:rgba(254,243,199,0.6);border-radius:6px;">📄 原文</div><img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663402005199/jytamGzdGrvdAnDF.PNG" alt="原文表格" style="width:100%;border-radius:8px;border:1px solid rgba(180,140,60,0.2);" data-lightbox="true" data-group="zh-table" /></div>
+              <div style="text-align:center;"><div style="font-size:11px;font-weight:700;color:#991b1b;margin-bottom:5px;padding:3px 8px;background:rgba(254,226,226,0.6);border-radius:6px;">❌ 其他工具（公式乱码）</div><img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663402005199/UlEdfJPHrZssUQqJ.PNG" alt="其他工具表格公式乱码" style="width:100%;border-radius:8px;border:1px solid rgba(153,27,27,0.2);" data-lightbox="true" data-group="zh-table" /></div>
+              <div style="text-align:center;"><div style="font-size:11px;font-weight:700;color:#166534;margin-bottom:5px;padding:3px 8px;background:rgba(220,252,231,0.6);border-radius:6px;">✅ BabelDOC（公式完整保留）</div><img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663402005199/dMJVDuLtkvXLphzW.PNG" alt="BabelDOC表格公式保留" style="width:100%;border-radius:8px;border:1px solid rgba(22,101,52,0.2);" data-lightbox="true" data-group="zh-table" /></div>
+            </div>
+          </div>
+          <!-- ④ 对齐效果 -->
+          <div style="margin-bottom:16px;">
+            <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:8px;">④ 对齐效果对比</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+              <div style="text-align:center;"><div style="font-size:11px;font-weight:700;color:#991b1b;margin-bottom:5px;padding:3px 8px;background:rgba(254,226,226,0.6);border-radius:6px;">❌ 其他工具（公式对齐错乱）</div><img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663402005199/UlEdfJPHrZssUQqJ.PNG" alt="其他工具对齐错乱" style="width:100%;border-radius:8px;border:1px solid rgba(153,27,27,0.2);" data-lightbox="true" data-group="zh-align" /></div>
+              <div style="text-align:center;"><div style="font-size:11px;font-weight:700;color:#166534;margin-bottom:5px;padding:3px 8px;background:rgba(220,252,231,0.6);border-radius:6px;">✅ BabelDOC（公式对齐精准）</div><img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663402005199/dMJVDuLtkvXLphzW.PNG" alt="BabelDOC对齐精准" style="width:100%;border-radius:8px;border:1px solid rgba(22,101,52,0.2);" data-lightbox="true" data-group="zh-align" /></div>
+            </div>
+          </div>
+          <!-- ⑤ 跨页效果 -->
+          <div>
+            <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:8px;">⑤ 跨页效果对比</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+              <div style="text-align:center;"><div style="font-size:11px;font-weight:700;color:#4a3a1a;margin-bottom:5px;padding:3px 8px;background:rgba(254,243,199,0.6);border-radius:6px;">📄 原文（英文论文）</div><img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663402005199/TZkGpNSbnlzXsehk.png" alt="原文英文论文" style="width:100%;border-radius:8px;border:1px solid rgba(180,140,60,0.2);" data-lightbox="true" data-group="zh-page" /></div>
+              <div style="text-align:center;"><div style="font-size:11px;font-weight:700;color:#991b1b;margin-bottom:5px;padding:3px 8px;background:rgba(254,226,226,0.6);border-radius:6px;">❌ 其他工具（跨页断句）</div><img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663402005199/zHtxHpdzTyhxbsCG.png" alt="其他工具跨页断句" style="width:100%;border-radius:8px;border:1px solid rgba(153,27,27,0.2);" data-lightbox="true" data-group="zh-page" /></div>
+              <div style="text-align:center;"><div style="font-size:11px;font-weight:700;color:#166534;margin-bottom:5px;padding:3px 8px;background:rgba(220,252,231,0.6);border-radius:6px;">✅ BabelDOC（跨页连贯）</div><img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663402005199/XULDGmgUmdqPpdXA.png" alt="BabelDOC跨页连贯" style="width:100%;border-radius:8px;border:1px solid rgba(22,101,52,0.2);" data-lightbox="true" data-group="zh-page" /></div>
+            </div>
+          </div>
           </div>
         </details>
         <details class="bdoc-details">
@@ -1113,72 +1191,34 @@
           </div>
           </div>
         </details>
-        <!-- 对比截图区 -->
-        <div style="font-size:12px;font-weight:700;color:#92400e;margin-bottom:6px;">📸 对比截图（可直接截图上镜）<span style="font-size:11px;font-weight:400;color:#8a7a5a;margin-left:6px;">原文 vs 其他工具 vs BabelDOC</span></div>
-        <!-- ① 公式翻译 -->
-        <div style="margin-bottom:8px;">
-          <div style="font-size:11px;font-weight:700;color:#4a3a1a;margin-bottom:4px;">① 公式翻译效果对比</div>
-          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;">
-            <div><div style="font-size:10px;font-weight:700;color:#4a3a1a;margin-bottom:3px;text-align:center;">📄 原文</div><img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663402005199/MwxWctrRiqUYhpJc.PNG" alt="原文公式" style="width:100%;border-radius:4px;border:1px solid rgba(180,140,60,0.25);"  data-lightbox="true" data-group="zh-formula" /></div>
-            <div><div style="font-size:10px;font-weight:700;color:#991b1b;margin-bottom:3px;text-align:center;">❌ 其他工具（公式乱码）</div><img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663402005199/oZzLKllqmzAoHSAw.PNG" alt="其他工具公式乱码" style="width:100%;border-radius:4px;border:1px solid rgba(153,27,27,0.25);"  data-lightbox="true" data-group="zh-formula" /></div>
-            <div><div style="font-size:10px;font-weight:700;color:#166534;margin-bottom:3px;text-align:center;">✅ BabelDOC（公式完整保留）</div><img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663402005199/JbPdNvMVsKwzmAnf.PNG" alt="BabelDOC公式保留" style="width:100%;border-radius:4px;border:1px solid rgba(22,101,52,0.25);"  data-lightbox="true" data-group="zh-formula" /></div>
-          </div>
-        </div>
-        <!-- ② 矢量图翻译 -->
-        <div style="margin-bottom:8px;">
-          <div style="font-size:11px;font-weight:700;color:#4a3a1a;margin-bottom:4px;">② 矢量图翻译效果对比</div>
-          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;">
-            <div><div style="font-size:10px;font-weight:700;color:#4a3a1a;margin-bottom:3px;text-align:center;">📄 原文</div><img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663402005199/gNiyyZegdTnjtjIw.PNG" alt="原文矢量图" style="width:100%;border-radius:4px;border:1px solid rgba(180,140,60,0.25);"  data-lightbox="true" data-group="zh-vector" /></div>
-            <div><div style="font-size:10px;font-weight:700;color:#991b1b;margin-bottom:3px;text-align:center;">❌ 其他工具（标注误译）</div><img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663402005199/bhZJcHYUxvaNpyLi.PNG" alt="其他工具矢量图误译" style="width:100%;border-radius:4px;border:1px solid rgba(153,27,27,0.25);"  data-lightbox="true" data-group="zh-vector" /></div>
-            <div><div style="font-size:10px;font-weight:700;color:#166534;margin-bottom:3px;text-align:center;">✅ BabelDOC（标注精准翻译）</div><img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663402005199/pipmNkikOZGuqYmM.PNG" alt="BabelDOC矢量图翻译" style="width:100%;border-radius:4px;border:1px solid rgba(22,101,52,0.25);"  data-lightbox="true" data-group="zh-vector" /></div>
-          </div>
-        </div>
-        <!-- ③ 图表翻译 -->
-        <div style="margin-bottom:8px;">
-          <div style="font-size:11px;font-weight:700;color:#4a3a1a;margin-bottom:4px;">③ 图表翻译效果对比</div>
-          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;">
-            <div><div style="font-size:10px;font-weight:700;color:#4a3a1a;margin-bottom:3px;text-align:center;">📄 原文</div><img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663402005199/jytamGzdGrvdAnDF.PNG" alt="原文表格" style="width:100%;border-radius:4px;border:1px solid rgba(180,140,60,0.25);"  data-lightbox="true" data-group="zh-table" /></div>
-            <div><div style="font-size:10px;font-weight:700;color:#991b1b;margin-bottom:3px;text-align:center;">❌ 其他工具（公式乱码）</div><img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663402005199/UlEdfJPHrZssUQqJ.PNG" alt="其他工具表格公式乱码" style="width:100%;border-radius:4px;border:1px solid rgba(153,27,27,0.25);"  data-lightbox="true" data-group="zh-table" /></div>
-            <div><div style="font-size:10px;font-weight:700;color:#166534;margin-bottom:3px;text-align:center;">✅ BabelDOC（公式完整保留）</div><img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663402005199/dMJVDuLtkvXLphzW.PNG" alt="BabelDOC表格公式保留" style="width:100%;border-radius:4px;border:1px solid rgba(22,101,52,0.25);"  data-lightbox="true" data-group="zh-table" /></div>
-          </div>
-        </div>
-        <!-- ④ 对齐效果 -->
-        <div style="margin-bottom:8px;">
-          <div style="font-size:11px;font-weight:700;color:#4a3a1a;margin-bottom:4px;">④ 对齐效果对比</div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;">
-            <div><div style="font-size:10px;font-weight:700;color:#991b1b;margin-bottom:3px;text-align:center;">❌ 其他工具（公式对齐错乱）</div><img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663402005199/UlEdfJPHrZssUQqJ.PNG" alt="其他工具对齐错乱" style="width:100%;border-radius:4px;border:1px solid rgba(153,27,27,0.25);"  data-lightbox="true" data-group="zh-align" /></div>
-            <div><div style="font-size:10px;font-weight:700;color:#166534;margin-bottom:3px;text-align:center;">✅ BabelDOC（公式对齐精准）</div><img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663402005199/dMJVDuLtkvXLphzW.PNG" alt="BabelDOC对齐精准" style="width:100%;border-radius:4px;border:1px solid rgba(22,101,52,0.25);"  data-lightbox="true" data-group="zh-align" /></div>
-          </div>
-        </div>
-        <!-- ⑤ 跨页效果 -->
-        <div style="margin-bottom:12px;">
-          <div style="font-size:11px;font-weight:700;color:#4a3a1a;margin-bottom:4px;">⑤ 跨页效果对比</div>
-          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;">
-            <div><div style="font-size:10px;font-weight:700;color:#4a3a1a;margin-bottom:3px;text-align:center;">📄 原文（英文论文）</div><img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663402005199/TZkGpNSbnlzXsehk.png" alt="原文英文论文" style="width:100%;border-radius:4px;border:1px solid rgba(180,140,60,0.25);"  data-lightbox="true" data-group="zh-page" /></div>
-            <div><div style="font-size:10px;font-weight:700;color:#991b1b;margin-bottom:3px;text-align:center;">❌ 其他工具（跨页断句）</div><img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663402005199/zHtxHpdzTyhxbsCG.png" alt="其他工具跨页断句" style="width:100%;border-radius:4px;border:1px solid rgba(153,27,27,0.25);"  data-lightbox="true" data-group="zh-page" /></div>
-            <div><div style="font-size:10px;font-weight:700;color:#166534;margin-bottom:3px;text-align:center;">✅ BabelDOC（跨页连贯）</div><img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663402005199/XULDGmgUmdqPpdXA.png" alt="BabelDOC跨页连贯" style="width:100%;border-radius:4px;border:1px solid rgba(22,101,52,0.25);"  data-lightbox="true" data-group="zh-page" /></div>
-          </div>
-        </div>
 
         <div style="font-size:12px;font-weight:700;color:#92400e;margin-bottom:7px;">🖥️ 使用入口与操作路径</div>
         <div class="babeldoc-steps">
           <div class="babeldoc-step"><span class="babeldoc-step-num">1</span><span>打开沉浸式翻译 → BabelDOC 页面</span></div>
           <div class="babeldoc-step"><span class="babeldoc-step-num">2</span><span>上传 PDF → 选择目标语言与翻译模型</span></div>
           <div class="babeldoc-step"><span class="babeldoc-step-num">3</span><span>（可选）在「翻译选项」开启：角色提示词、富文本翻译、字体、术语库 / 自动提取术语、移除段落中非公式线条</span></div>
-          <div class="babeldoc-step-img" style="margin:8px 0 10px 32px;">
-            <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663402005199/SDQzwYtjGQTjHdeo.png"
-              alt="翻译选项面板截图"
-              style="max-width:100%;border-radius:8px;cursor:pointer;border:1px solid rgba(255,200,100,0.25);"
-              data-lightbox="true" data-group="bdoc-tutorial"
-              onclick="openLightboxGrouped(this)">
+          <div class="feat-img-toggle" style="margin:6px 0 8px 32px;">
+            <button class="feat-img-btn" onclick="toggleFeatImg(this)">📸 查看截图 ▸</button>
+            <div class="feat-img-body">
+              <a href="#" onclick="openLightboxGrouped(this.querySelector('img'));return false;">
+                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663402005199/SDQzwYtjGQTjHdeo.png"
+                  alt="翻译选项面板截图"
+                  data-lightbox="true" data-group="bdoc-tutorial"
+                  style="cursor:zoom-in;display:block;width:100%;border-radius:8px;" />
+              </a>
+            </div>
           </div>
           <div class="babeldoc-step"><span class="babeldoc-step-num">4</span><span>立即翻译 → 导出成品（支持批量下载）</span></div>
-          <div class="babeldoc-step-img" style="margin:8px 0 10px 32px;">
-            <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663402005199/KsmLCPfjkLYrOZNF.png"
-              alt="批量下载结果截图"
-              style="max-width:100%;border-radius:8px;cursor:pointer;border:1px solid rgba(255,200,100,0.25);"
-              data-lightbox="true" data-group="bdoc-tutorial"
-              onclick="openLightboxGrouped(this)">
+          <div class="feat-img-toggle" style="margin:6px 0 8px 32px;">
+            <button class="feat-img-btn" onclick="toggleFeatImg(this)">📸 查看截图 ▸</button>
+            <div class="feat-img-body">
+              <a href="#" onclick="openLightboxGrouped(this.querySelector('img'));return false;">
+                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663402005199/KsmLCPfjkLYrOZNF.png"
+                  alt="批量下载结果截图"
+                  data-lightbox="true" data-group="bdoc-tutorial"
+                  style="cursor:zoom-in;display:block;width:100%;border-radius:8px;" />
+              </a>
+            </div>
           </div>
         </div>
 
@@ -2172,6 +2212,14 @@
     });
   }
 
+  // ===== Feature Image Toggle =====
+  function toggleFeatImg(btn) {
+    btn.classList.toggle('open');
+    var body = btn.nextElementSibling;
+    body.classList.toggle('open');
+  }
+  // ===== /Feature Image Toggle =====
+
   // ===== Grouped Lightbox with Prev/Next =====
   var _lbGroup = [];
   var _lbIdx = 0;
@@ -2224,9 +2272,12 @@
     if (e.key === 'ArrowRight') lbNext();
   });
 
+  // Event delegation for all data-lightbox images (NOT inside feat-img-body which use openLightboxGrouped directly)
   document.addEventListener('click', function(e) {
     var img = e.target;
     if (img.tagName === 'IMG' && img.dataset.lightbox === 'true') {
+      // Check if it's inside a feat-img-body (handled by anchor onclick)
+      if (img.closest('.feat-img-body')) return;
       e.preventDefault();
       e.stopPropagation();
       openLightboxGrouped(img);
@@ -2234,5 +2285,62 @@
   });
   // ===== /Grouped Lightbox =====
 </script>
+
+<!-- ===== LIGHTBOX MODAL ===== -->
+<div id="lightbox-overlay" onclick="closeLightbox()" style="
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.88);
+  z-index:9999;
+  cursor:zoom-out;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  box-sizing:border-box;
+">
+  <!-- Close button -->
+  <button onclick="closeLightbox()" style="
+    position:fixed;top:16px;right:20px;
+    background:rgba(255,255,255,0.15);border:none;color:#fff;
+    font-size:28px;line-height:1;width:44px;height:44px;
+    border-radius:50%;cursor:pointer;z-index:10000;
+    display:flex;align-items:center;justify-content:center;
+  ">×</button>
+  <!-- Prev arrow -->
+  <button id="lb-prev" onclick="event.stopPropagation();lbPrev()" style="
+    display:none;position:fixed;left:16px;top:50%;transform:translateY(-50%);
+    background:rgba(255,255,255,0.18);border:none;color:#fff;
+    font-size:32px;line-height:1;width:52px;height:52px;
+    border-radius:50%;cursor:pointer;z-index:10000;
+    align-items:center;justify-content:center;
+    transition:background 0.2s;
+  " onmouseover="this.style.background='rgba(255,255,255,0.32)'" onmouseout="this.style.background='rgba(255,255,255,0.18)'">‹</button>
+  <!-- Next arrow -->
+  <button id="lb-next" onclick="event.stopPropagation();lbNext()" style="
+    display:none;position:fixed;right:16px;top:50%;transform:translateY(-50%);
+    background:rgba(255,255,255,0.18);border:none;color:#fff;
+    font-size:32px;line-height:1;width:52px;height:52px;
+    border-radius:50%;cursor:pointer;z-index:10000;
+    align-items:center;justify-content:center;
+    transition:background 0.2s;
+  " onmouseover="this.style.background='rgba(255,255,255,0.32)'" onmouseout="this.style.background='rgba(255,255,255,0.18)'">›</button>
+  <!-- Counter -->
+  <div id="lb-counter" style="
+    display:none;position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
+    color:rgba(255,255,255,0.7);font-size:14px;font-weight:500;
+    background:rgba(0,0,0,0.4);padding:4px 12px;border-radius:20px;
+    z-index:10000;pointer-events:none;
+  "></div>
+  <img id="lightbox-img" src="" alt="" onclick="event.stopPropagation()" style="
+    max-width:90vw;
+    max-height:90vh;
+    object-fit:contain;
+    border-radius:8px;
+    box-shadow:0 8px 40px rgba(0,0,0,0.6);
+    cursor:default;
+  " />
+</div>
+<!-- ===== /LIGHTBOX MODAL ===== -->
 </body>
 </html>
