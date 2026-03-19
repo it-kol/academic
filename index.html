@@ -532,22 +532,21 @@
   }
   .babeldoc-steps {
     display: flex;
-    gap: 7px;
-    flex-wrap: wrap;
-    margin-bottom: 12px;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 14px;
   }
   .babeldoc-step {
-    background: #fff7ed;
-    border: 1px solid #fed7aa;
-    border-radius: 7px;
-    padding: 6px 10px;
-    font-size: 12px;
-    color: #7c2d12;
+    background: rgba(255,255,255,0.7);
+    border: 1px solid rgba(217,119,6,0.2);
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 13px;
+    color: #451a03;
     display: flex;
     align-items: flex-start;
-    gap: 7px;
-    flex: 1;
-    min-width: 150px;
+    gap: 10px;
+    line-height: 1.6;
   }
   .babeldoc-step-num {
     background: #d97706;
@@ -1192,32 +1191,22 @@
           </div>
         </details>
 
-        <div style="font-size:12px;font-weight:700;color:#92400e;margin-bottom:7px;">🖥️ 使用入口与操作路径</div>
+        <div style="font-size:12px;font-weight:700;color:#92400e;margin-bottom:7px;">🚀 BabelDOC 使用方法（可以教程形式介绍给粉丝）</div>
         <div class="babeldoc-steps">
-          <div class="babeldoc-step"><span class="babeldoc-step-num">1</span><span>打开沉浸式翻译 → BabelDOC 页面</span></div>
-          <div class="babeldoc-step"><span class="babeldoc-step-num">2</span><span>上传 PDF → 选择目标语言与翻译模型</span></div>
-          <div class="babeldoc-step"><span class="babeldoc-step-num">3</span><span>（可选）在「翻译选项」开启：角色提示词、富文本翻译、字体、术语库 / 自动提取术语、移除段落中非公式线条</span></div>
-          <div class="feat-img-toggle" style="margin:6px 0 8px 32px;">
-            <button class="feat-img-btn" onclick="toggleFeatImg(this)">📸 查看截图 ▸</button>
-            <div class="feat-img-body">
-              <a href="#" onclick="openLightboxGrouped(this.querySelector('img'));return false;">
-                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663402005199/SDQzwYtjGQTjHdeo.png"
-                  alt="翻译选项面板截图"
-                  data-lightbox="true" data-group="bdoc-tutorial"
-                  style="cursor:zoom-in;display:block;width:100%;border-radius:8px;" />
-              </a>
+          <div class="babeldoc-step"><div class="babeldoc-step-num">1</div>打开沉浸式翻译 → BabelDOC 页面</div>
+          <div class="babeldoc-step"><div class="babeldoc-step-num">2</div>上传 PDF → 选择目标语言与翻译模型</div>
+          <div class="babeldoc-step">
+            <div class="babeldoc-step-num" style="flex-shrink:0;margin-top:2px">3</div>
+            <div style="flex:1">
+              <div>（可选）在「翻译选项」开启：<strong>角色提示词</strong>、富文本翻译（粗体/斜体等）、字体、术语库/自动提取术语、移除段落中非公式线条</div>
+              <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663402005199/SDQzwYtjGQTjHdeo.png" alt="BabelDOC 翻译选项面板" style="width:100%;max-width:360px;border-radius:8px;border:1px solid rgba(217,119,6,0.25);cursor:zoom-in;display:block;margin-top:10px" data-lightbox="true" data-group="bdoc-tutorial" onclick="openLightboxGrouped(this);return false;" />
             </div>
           </div>
-          <div class="babeldoc-step"><span class="babeldoc-step-num">4</span><span>立即翻译 → 导出成品（支持批量下载）</span></div>
-          <div class="feat-img-toggle" style="margin:6px 0 8px 32px;">
-            <button class="feat-img-btn" onclick="toggleFeatImg(this)">📸 查看截图 ▸</button>
-            <div class="feat-img-body">
-              <a href="#" onclick="openLightboxGrouped(this.querySelector('img'));return false;">
-                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663402005199/KsmLCPfjkLYrOZNF.png"
-                  alt="批量下载结果截图"
-                  data-lightbox="true" data-group="bdoc-tutorial"
-                  style="cursor:zoom-in;display:block;width:100%;border-radius:8px;" />
-              </a>
+          <div class="babeldoc-step">
+            <div class="babeldoc-step-num" style="flex-shrink:0;margin-top:2px">4</div>
+            <div style="flex:1">
+              <div>立即翻译 → 导出成品（<strong>支持批量下载</strong>）</div>
+              <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663402005199/KsmLCPfjkLYrOZNF.png" alt="BabelDOC 批量下载结果" style="width:100%;max-width:360px;border-radius:8px;border:1px solid rgba(217,119,6,0.25);cursor:zoom-in;display:block;margin-top:10px" data-lightbox="true" data-group="bdoc-tutorial" onclick="openLightboxGrouped(this);return false;" />
             </div>
           </div>
         </div>
